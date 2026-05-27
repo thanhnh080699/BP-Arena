@@ -1,0 +1,133 @@
+:root {
+  --bg-color: #0b0e14;
+  --bg-card: #151a24;
+  --bg-input: #1c232e;
+  --primary-color: #e3b341; /* AOE Gold */
+  --primary-hover: #f1c40f;
+  --secondary-color: #2c3e50;
+  --accent-color: #e74c3c;
+  --text-main: #ffffff;
+  --text-muted: #94a3b8;
+  --border-color: #2d3748;
+  --neon-shadow: 0 0 10px rgba(227, 179, 65, 0.3);
+  --glass: rgba(21, 26, 36, 0.7);
+  --glass-blur: blur(10px);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  overflow: hidden; /* Desktop app style */
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-color);
+}
+
+.glass-card {
+  background: var(--glass);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+}
+
+.title-bar-drag {
+  -webkit-app-region: drag;
+  width: 100%;
+  height: 30px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 999;
+}
+
+.window-controls {
+  display: flex;
+}
+
+.control-btn {
+  width: 45px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text-muted);
+  transition: all 0.1s ease;
+}
+
+.control-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.control-btn.hover-red:hover {
+  background: #e74c3c;
+}
+
+.btn-primary {
+
+
+  background: var(--primary-color);
+  color: #000;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.btn-primary:hover {
+  background: var(--primary-hover);
+  box-shadow: 0 0 15px rgba(227, 179, 65, 0.5);
+  transform: translateY(-1px);
+}
+
+.input-group {
+  margin-bottom: 1.5rem;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+.input-group input {
+  width: 100%;
+  background: var(--bg-input);
+  border: 1px solid var(--border-color);
+  padding: 12px;
+  border-radius: 8px;
+  color: #fff;
+  outline: none;
+}
+
+.input-group input:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 5px rgba(227, 179, 65, 0.2);
+}
