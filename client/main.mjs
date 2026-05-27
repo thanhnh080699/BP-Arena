@@ -1,10 +1,58 @@
 import { app, BrowserWindow, ipcMain, Menu, dialog } from 'electron';
-import { spawn, exec, execFile } from 'child_process';
+import { spawn } from 'child_process';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import fs from 'fs';
+import { createLauncherCore } from './electron/launcherCore.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+let backendProcess = null;
+let launcherCore = null;
+
+app.setName('BP-Arena');
+
+function getBackendExecutablePath() {
+  const executableName = process.platform === 'win32' ? 'bp-arena-server.exe' : 'bp-arena-server';
+
+  if (app.isPackaged) {
+    return path.join(process.resourcesPath, 'server', executableName);
+  }
+
+  return path.join(__dirname, 'resources', 'server', executableName);
+}
+
+function startBundledBackend(backendDataDir) {
+  const backendPath = getBackendExecutablePath();
+
+  if (!fs.existsSync(backendPath)) {
+    console.warn('Bundled backend not found:', backendPath);
+    return;
+  }
+
+  fs.mkdirSync(backendDataDir, { recursive: true });
+
+  backendProcess = spawn(backendPath, [], {
+    cwd: backendDataDir,
+    windowsHide: true,
+    stdio: 'ignore',
+  });
+
+  backendProcess.on('error', (error) => {
+    console.error('Failed to start bundled backend:', error.message);
+  });
+
+  backendProcess.on('exit', (code) => {
+    console.log('Bundled backend exited with code:', code);
+    backendProcess = null;
+  });
+}
+
+function stopBundledBackend() {
+  if (backendProcess && !backendProcess.killed) {
+    backendProcess.kill();
+    backendProcess = null;
+  }
+}
 
 // Handle game file selection via dialog
 ipcMain.handle('select-game-file', async () => {
@@ -40,10 +88,13 @@ function createWindow() {
   // Remove menu bar
   Menu.setApplicationMenu(null);
 
-  // Simple dev check
-  win.loadURL('http://localhost:5173').catch(() => {
+  if (app.isPackaged) {
     win.loadFile(path.join(__dirname, 'dist/index.html'));
-  });
+  } else {
+    win.loadURL('http://localhost:5173').catch(() => {
+      win.loadFile(path.join(__dirname, 'dist/index.html'));
+    });
+  }
 
   // Window control IPCs
   ipcMain.on('window-minimize', () => win.minimize());
@@ -60,73 +111,27 @@ function createWindow() {
 
 
 
-app.whenReady().then(createWindow);
+app.whenReady().then(() => {
+  launcherCore = createLauncherCore({ app, appDir: __dirname });
+  launcherCore.registerIpc(ipcMain);
+  startBundledBackend(launcherCore.getBackendDataDir());
+  createWindow();
+});
+
+app.on('before-quit', stopBundledBackend);
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') app.quit();
 });
 
-// AOE 1 Launcher Logic with Registry Sync
 ipcMain.on('launch-game', (event, { gamePath, username, hostIp }) => {
-  console.log('Validating game path:', gamePath);
-
-  if (!fs.existsSync(gamePath)) {
-    event.reply('launch-error', `Game not found at: ${gamePath}. Please check your download folder!`);
+  if (!launcherCore) {
+    event.reply('launch-error', 'Launcher core is not ready yet.');
     return;
   }
 
-  console.log('Synchronizing name:', username);
-
-  const regKeys = [
-    'HKCU\\Software\\Microsoft\\Microsoft Games\\Age of Empires\\1.0',
-    'HKCU\\Software\\Microsoft\\Microsoft Games\\Age of Empires Expansion\\1.0'
-  ];
-
-  const gameDir = path.dirname(gamePath);
-  
-  // Safe command building
-  const commands = regKeys.flatMap(key => [
-    `reg add "${key}" /v "Player Name" /t REG_SZ /d "${username}" /f`,
-    `reg add "${key}" /v "SetupPath" /t REG_SZ /d "${gameDir}" /f`
-  ]);
-
-  console.log('Syncing Registry...');
-  exec(commands.join(' && '), (error) => {
-    if (error) {
-      console.error('Registry Sync Error:', error.message);
-    } else {
-      console.log('Registry sync successful!');
-    }
-
-    // Launch game with potential modern patch arguments
-    // Final attempt with common Vietnamese HD patch parameters
-    try {
-      const args = ['nostartup'];
-      if (hostIp) {
-        // Some Vietnamese HD versions use -connect or -join=IP
-        args.push('-connect', hostIp, '-mp=1');
-      }
-
-      console.log('Attempting launch with Vietnamese HD patch flags:', args);
-      
-      execFile(gamePath, args, { cwd: gameDir }, (err) => {
-        if (err) {
-          console.error('Arguments rejected by game. Error Code:', err.code);
-          
-          // Fallback to TRULY clean setup (No arguments at all)
-          console.log('Falling back to TRULY normal launch (NO ARGS)...');
-          execFile(gamePath, [], { cwd: gameDir });
-          event.reply('launch-success', 'Game started! (Auto-join & Intros not supported by this version)');
-        } else {
-          console.log('Game accepted parameters!');
-          event.reply('launch-success', 'Game launched with auto-join flags!');
-        }
-      });
-
-    } catch (err) {
-      console.error('Launch Exception:', err);
-      event.reply('launch-error', `System error: ${err.message}`);
-    }
-  });
+  launcherCore.launchGame({ nickname: username, hostIp, gamePath })
+    .then(() => event.reply('launch-success', 'Game started.'))
+    .catch(error => event.reply('launch-error', error.message));
 });
 

@@ -1,287 +1,648 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  Users, Plus, Play, LogOut, Settings, MessageSquare, 
-  Shield, Swords, User, Map as MapIcon, ChevronRight, Trophy
+import React, { useEffect, useMemo, useState } from 'react';
+import { motion } from 'framer-motion';
+import {
+  Activity,
+  Crown,
+  Cpu,
+  Download,
+  Edit3,
+  Focus,
+  Gamepad2,
+  LogOut,
+  MessageSquare,
+  Monitor,
+  Play,
+  Plus,
+  Radio,
+  RefreshCcw,
+  Settings,
+  ShieldCheck,
+  Square,
+  Terminal,
+  Trash2,
+  Trophy,
+  Users,
+  Wifi,
+  Wrench,
 } from 'lucide-react';
+import axios from 'axios';
 
-// For Electron IPC
-const isElectron = window && window.process && window.process.type === 'renderer';
-let ipcRenderer = null;
-if (isElectron) {
-  ipcRenderer = window.require('electron').ipcRenderer;
+const isElectron = typeof window !== 'undefined' && window.process && window.process.type === 'renderer';
+const ipcRenderer = isElectron ? window.require('electron').ipcRenderer : null;
+
+const API_BASE_URL = 'http://localhost:8081';
+
+const defaultSettings = {
+  schemaVersion: 1,
+  runtimePath: '',
+  sourceGamePath: '',
+  exeName: 'Empiresxhd.exe',
+  nickname: '',
+  resolution: { width: 1024, height: 768 },
+  windowMode: 'windowed',
+  renderer: 'gdi',
+  patches: { cncDdraw: false, cncDdrawLaunchEnabled: true, upatchHd: true },
+  matchmaking: { apiBaseUrl: API_BASE_URL, preferredNetwork: 'direct-lan' },
+  launchArgs: [],
+  automationProfile: 'aoe-ror-1024x768-windowed',
+};
+
+const fallbackStatus = {
+  sourceGameExists: false,
+  cncDdrawAvailable: false,
+  runtime: { installed: false, verified: false, missing: [], mismatched: [], manifestEntries: 0 },
+  patches: { cncDdraw: false },
+  process: { running: false, trackedPid: null, processes: [], window: null },
+  diagnostics: { directPlay: { state: 'unknown' } },
+};
+
+function StatusPill({ ok, label }) {
+  return (
+    <span className={`status-pill ${ok ? 'status-ok' : 'status-warn'}`}>
+      {label}
+    </span>
+  );
+}
+
+function Field({ label, children }) {
+  return (
+    <label className="settings-field">
+      <span>{label}</span>
+      {children}
+    </label>
+  );
+}
+
+function normalizeRoom(room) {
+  return {
+    id: room.ID || room.id,
+    name: room.name || 'Unnamed room',
+    host: room.host_name || room.host || 'Unknown',
+    status: room.status || 'waiting',
+    capacity: room.capacity || 8,
+    players: room.player_count || 1,
+    gameType: room.game_type || 'AOE_ROR',
+    hostIp: room.host_ip || room.hostIp || '',
+    updatedAt: room.UpdatedAt || room.updated_at || room.last_heartbeat,
+  };
 }
 
 const Lobby = ({ user, onLogout }) => {
-  const [rooms, setRooms] = useState([
-    { id: 1, name: '4vs4 Choson Only', host: 'ProGamer', hostIp: '192.168.1.15', players: [1,2,3,4,5], capacity: 8, status: 'waiting', map: 'Large - Islands' },
-    { id: 2, name: 'Sân chơi Công Ty - 2vs2', host: 'BossAOE', hostIp: '192.168.1.5', players: [1,2,3,4], capacity: 4, status: 'playing', map: 'Medium - Inland' },
-  ]);
-
-  const [isCreating, setIsCreating] = useState(false);
+  const [settings, setSettings] = useState(defaultSettings);
+  const [status, setStatus] = useState(fallbackStatus);
+  const [logs, setLogs] = useState([]);
+  const [rooms, setRooms] = useState([]);
+  const [telemetry, setTelemetry] = useState(null);
+  const [leaderboard, setLeaderboard] = useState([]);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
-  const [gamePath, setGamePath] = useState(localStorage.getItem('aoe_game_path') || "C:\\Users\\Ad\\Downloads\\AOE-HD-2\\AOE-HD\\Empiresxhd.exe");
+  const [busyAction, setBusyAction] = useState('');
+  const [notice, setNotice] = useState('');
+  const [socketState, setSocketState] = useState('connecting');
+  const [roomForm, setRoomForm] = useState({
+    name: 'BP Arena Room',
+    capacity: 8,
+    gameType: 'AOE_ROR',
+  });
 
-  const handleBrowseGame = async () => {
-    if (isElectron && ipcRenderer) {
-      const selectedPath = await ipcRenderer.invoke('select-game-file');
-      if (selectedPath) {
-        setGamePath(selectedPath);
-        localStorage.setItem('aoe_game_path', selectedPath);
-        console.log('Game path updated:', selectedPath);
-      }
+  const apiBaseUrl = settings.matchmaking?.apiBaseUrl || API_BASE_URL;
+  const effectiveNickname = settings.nickname || user?.username || 'Player';
+  const runningProcess = status.process.processes[0];
+  const roomCards = useMemo(() => rooms.map(normalizeRoom), [rooms]);
+
+  const invoke = async (channel, payload) => {
+    if (!ipcRenderer) {
+      throw new Error('Run BP-Arena from the desktop app to use launcher features.');
+    }
+
+    return ipcRenderer.invoke(channel, payload);
+  };
+
+  const refreshLauncher = async () => {
+    if (!ipcRenderer) return;
+
+    const [nextSettings, nextStatus, nextLogs, nextTelemetry] = await Promise.all([
+      invoke('settings:get'),
+      invoke('game:status'),
+      invoke('logs:tail', 150),
+      invoke('telemetry:snapshot'),
+    ]);
+
+    setSettings(nextSettings);
+    setStatus(nextStatus);
+    setLogs(nextLogs);
+    setTelemetry(nextTelemetry);
+  };
+
+  const refreshRooms = async () => {
+    try {
+      const [roomResponse, leaderboardResponse] = await Promise.all([
+        axios.get(`${apiBaseUrl}/api/rooms`),
+        axios.get(`${apiBaseUrl}/api/leaderboard`),
+      ]);
+      setRooms(Array.isArray(roomResponse.data) ? roomResponse.data : []);
+      setLeaderboard(Array.isArray(leaderboardResponse.data) ? leaderboardResponse.data : []);
+    } catch {
+      setRooms([]);
+      setLeaderboard([]);
     }
   };
 
   useEffect(() => {
-    if (isElectron && ipcRenderer) {
-      const errorHandler = (event, message) => alert(message);
-      const successHandler = (event, message) => console.log(message);
+    refreshLauncher().catch(error => setNotice(error.message));
+    refreshRooms();
 
-      ipcRenderer.on('launch-error', errorHandler);
-      ipcRenderer.on('launch-success', successHandler);
+    const timer = setInterval(() => {
+      refreshLauncher().catch(() => {});
+      refreshRooms();
+    }, 7000);
 
-      return () => {
-        ipcRenderer.removeListener('launch-error', errorHandler);
-        ipcRenderer.removeListener('launch-success', successHandler);
-      };
-    }
-  }, []);
+    return () => clearInterval(timer);
+  }, [apiBaseUrl]);
 
-  const handleLaunchGame = (room = null) => {
-    if (isElectron && ipcRenderer) {
-      ipcRenderer.send('launch-game', { 
-        gamePath, 
-        username: user.username,
-        hostIp: room ? room.hostIp : null
-      });
-      console.log(`Launching AOE 1 as ${user.username}...`);
-    } else {
-      alert("Please run through the BP-Arena Desktop App to launch the game!");
+  useEffect(() => {
+    const wsUrl = apiBaseUrl.replace(/^http/, 'ws') + '/ws/rooms';
+    const socket = new WebSocket(wsUrl);
+    setSocketState('connecting');
+
+    socket.onopen = () => setSocketState('online');
+    socket.onclose = () => setSocketState('offline');
+    socket.onerror = () => setSocketState('offline');
+    socket.onmessage = event => {
+      try {
+        const message = JSON.parse(event.data);
+        if (message.type?.startsWith('room.')) {
+          refreshRooms();
+        }
+      } catch {
+        refreshRooms();
+      }
+    };
+
+    return () => socket.close();
+  }, [apiBaseUrl]);
+
+  const runAction = async (label, action) => {
+    setBusyAction(label);
+    setNotice('');
+
+    try {
+      const result = await action();
+      if (result?.settings) {
+        setSettings(result.settings);
+      }
+      await Promise.all([
+        refreshLauncher().catch(() => {}),
+        refreshRooms(),
+      ]);
+      setNotice(`${label} completed.`);
+      return result;
+    } catch (error) {
+      setNotice(error.message);
+      throw error;
+    } finally {
+      setBusyAction('');
     }
   };
 
+  const saveSettings = async (patch) => {
+    const nextSettings = {
+      ...settings,
+      ...patch,
+      resolution: {
+        ...settings.resolution,
+        ...(patch.resolution || {}),
+      },
+      patches: {
+        ...settings.patches,
+        ...(patch.patches || {}),
+      },
+      matchmaking: {
+        ...settings.matchmaking,
+        ...(patch.matchmaking || {}),
+      },
+    };
+
+    const saved = await invoke('settings:save', nextSettings);
+    setSettings(saved);
+    return saved;
+  };
+
+  const handleLaunch = () => runAction('Start game', async () => {
+    await saveSettings({ nickname: effectiveNickname });
+    return invoke('game:launch', {
+      nickname: effectiveNickname,
+    });
+  }).catch(() => {});
+
+  const createRoom = () => runAction('Create room', async () => {
+    const name = roomForm.name.trim();
+    if (!name) {
+      throw new Error('Room name is required.');
+    }
+
+    const response = await axios.post(`${apiBaseUrl}/api/rooms`, {
+      name,
+      host_name: effectiveNickname,
+      capacity: Number(roomForm.capacity) || 8,
+      game_type: roomForm.gameType,
+      status: 'waiting',
+    });
+    return response.data;
+  }).catch(() => {});
+
+  const editRoom = (room) => {
+    const nextName = window.prompt('Room name', room.name);
+    if (!nextName || nextName.trim() === room.name) return;
+
+    runAction('Update room', async () => (
+      axios.put(`${apiBaseUrl}/api/rooms/${room.id}`, {
+        name: nextName.trim(),
+      })
+    )).catch(() => {});
+  };
+
+  const deleteRoom = (room) => {
+    if (!window.confirm(`Delete room "${room.name}"?`)) return;
+
+    runAction('Delete room', async () => (
+      axios.delete(`${apiBaseUrl}/api/rooms/${room.id}`)
+    )).catch(() => {});
+  };
+
+  const createInGameRoom = (room) => runAction('Create game room', async () => {
+    await saveSettings({ nickname: effectiveNickname });
+    const automation = await invoke('automation:createRoom', {
+      roomName: room.name,
+      nickname: effectiveNickname,
+      exeName: settings.exeName,
+    });
+
+    if (automation?.ok === false) {
+      throw new Error(automation.message || 'Create room automation failed.');
+    }
+
+    const response = await axios.post(`${apiBaseUrl}/api/rooms/${room.id}/game-created`, {
+      host_name: effectiveNickname,
+    });
+    return response.data;
+  }).catch(() => {});
+
+  const joinInGameRoom = (room) => runAction('Join game', async () => {
+    await axios.post(`${apiBaseUrl}/api/rooms/${room.id}/join`, {
+      username: effectiveNickname,
+    });
+    await saveSettings({ nickname: effectiveNickname });
+    return invoke('game:launch', {
+      nickname: effectiveNickname,
+      hostIp: room.hostIp,
+    });
+  }).catch(() => {});
+
+  const activeRooms = roomCards.filter(room => ['waiting', 'launching', 'in_lobby'].includes(room.status)).length;
+  const isBusy = Boolean(busyAction);
+
   return (
-    <div className="lobby-container" style={{
-      height: '100vh',
-      display: 'grid',
-      gridTemplateColumns: '260px 1fr 300px',
-      background: 'var(--bg-color)'
-    }}>
-      
-      {/* Sidebar: User Info & Stats */}
-      <aside className="glass-card" style={{ 
-        margin: '10px', 
-        padding: '20px',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between'
-      }}>
+    <div className="lobby-shell">
+      <aside className="launcher-sidebar">
         <div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '30px' }}>
-            <div style={{ 
-              width: '48px', 
-              height: '48px', 
-              borderRadius: '50%', 
-              background: 'var(--primary-color)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: '#000'
-            }}>
-              <User size={24} />
-            </div>
+          <div className="user-block">
+            <div className="avatar"><Gamepad2 size={24} /></div>
             <div>
-              <h3 style={{ fontSize: '1rem' }}>{user?.username || 'Warrior'}</h3>
-              <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Level 15 Roman</span>
+              <h3>{user?.username || 'Warrior'}</h3>
+              <span>BP Arena Platform</span>
             </div>
           </div>
 
-          <nav style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-            {[
-              { id: 'match', icon: <Swords size={18} />, label: 'Find Match', active: true },
-              { id: 'clan', icon: <Users size={18} />, label: 'Clan Members' },
-              { id: 'lead', icon: <Trophy size={18} />, label: 'Leaderboard' },
-              { id: 'settings', icon: <Settings size={18} />, label: 'Game Settings' },
-            ].map((item, i) => (
-              <div 
-                key={i} 
-                onClick={() => item.id === 'settings' && setIsSettingsOpen(true)}
-                style={{
-                  padding: '12px',
-                  borderRadius: '8px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '12px',
-                  cursor: 'pointer',
-                  background: item.active ? 'rgba(227, 179, 65, 0.1)' : 'transparent',
-                  color: item.active ? 'var(--primary-color)' : 'var(--text-muted)',
-                  transition: '0.2s'
-                }}
-              >
-                {item.icon}
-                <span style={{ fontWeight: '500' }}>{item.label}</span>
-              </div>
-            ))}
+          <nav className="launcher-nav">
+            <button className="nav-item active"><Activity size={18} /> Arena</button>
+            <button className="nav-item" onClick={() => setIsSettingsOpen(true)}><Settings size={18} /> Settings</button>
+            <button className="nav-item"><Users size={18} /> Rooms</button>
+            <button className="nav-item"><ShieldCheck size={18} /> Diagnostics</button>
           </nav>
         </div>
 
-        <button onClick={onLogout} style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: '10px',
-          background: 'transparent',
-          border: 'none',
-          color: 'var(--accent-color)',
-          cursor: 'pointer',
-          padding: '10px'
-        }}>
+        <button onClick={onLogout} className="logout-btn">
           <LogOut size={18} />
-          <span>Leave Arena</span>
+          Leave Arena
         </button>
       </aside>
 
-      {/* Main Content: Room List */}
-      <main style={{ padding: '20px', overflowY: 'auto' }}>
-        <header style={{ 
-          display: 'flex', 
-          justifyContent: 'space-between', 
-          alignItems: 'center',
-          marginBottom: '30px'
-        }}>
-          <h2 style={{ fontSize: '1.5rem', fontWeight: '700' }}>AOE I LOBBY</h2>
-          <button className="btn-primary" onClick={() => setIsCreating(true)} style={{
-            display: 'flex', alignItems: 'center', gap: '8px'
-          }}>
-            <Plus size={20} /> Create Room
-          </button>
+      <main className="launcher-main">
+        <header className="launcher-header platform-header">
+          <div>
+            <h2>BP-Arena</h2>
+            <p>AOE ROR platform, launcher control, and realtime LAN room flow.</p>
+          </div>
+          <div className="header-status">
+            <StatusPill ok={socketState === 'online'} label={`Socket ${socketState}`} />
+            <StatusPill ok={status.runtime.verified} label={status.runtime.verified ? 'Runtime verified' : 'Runtime needs repair'} />
+            <StatusPill ok={status.process.running} label={status.process.running ? 'Game running' : 'Game stopped'} />
+          </div>
         </header>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '20px' }}>
-          {rooms.map((room) => (
-            <motion.div 
-              whileHover={{ scale: 1.02 }}
-              key={room.id} 
-              className="glass-card" 
-              style={{ padding: '20px', position: 'relative', overflow: 'hidden' }}
-            >
-              {room.status === 'playing' && (
-                <div style={{
-                  position: 'absolute', top: '10px', right: '10px',
-                  background: 'var(--accent-color)', fontSize: '0.6rem',
-                  padding: '2px 8px', borderRadius: '4px', textTransform: 'uppercase'
-                }}>Live</div>
-              )}
-              
-              <h3 style={{ marginBottom: '15px', color: 'var(--primary-color)' }}>{room.name}</h3>
-              
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '0.85rem' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text-muted)' }}>
-                  <User size={14} /> <span>Host: {room.host}</span>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text-muted)' }}>
-                  <MapIcon size={14} /> <span>{room.map}</span>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text-muted)' }}>
-                  <Users size={14} /> <span>{room.players.length} / {room.capacity} Players</span>
-                </div>
-              </div>
+        {notice && <div className="notice">{notice}</div>}
+        {busyAction && <div className="notice muted-notice">{busyAction}...</div>}
 
-              <div style={{ marginTop: '20px', display: 'flex', gap: '10px' }}>
-                <button 
-                  className={room.status === 'waiting' ? 'btn-primary' : 'btn-secondary'}
-                  disabled={room.status === 'playing'}
-                  onClick={() => handleLaunchGame(room)}
-                  style={{ flex: 1 }}
-                >
-                  {room.status === 'playing' ? 'Spectate' : 'Join Battle'}
-                </button>
-              </div>
+        <section className="platform-kpis">
+          <div className="kpi"><span>Rooms</span><strong>{roomCards.length}</strong></div>
+          <div className="kpi"><span>Open Lobbies</span><strong>{activeRooms}</strong></div>
+          <div className="kpi"><span>Players Online</span><strong>{roomCards.reduce((sum, room) => sum + room.players, 0)}</strong></div>
+          <div className="kpi"><span>Socket</span><strong>{socketState}</strong></div>
+        </section>
 
-            </motion.div>
-          ))}
-        </div>
+        <section className="rooms-section platform-rooms">
+          <div className="section-title">
+            <div>
+              <h3>Room Control</h3>
+              <span>Realtime CRUD with host and client game actions.</span>
+            </div>
+            <button className="btn-secondary" disabled={isBusy} onClick={refreshRooms}>
+              <RefreshCcw size={16} /> Refresh
+            </button>
+          </div>
+
+          <div className="room-create-card">
+            <div className="create-room-form">
+              <input
+                value={roomForm.name}
+                onChange={event => setRoomForm({ ...roomForm, name: event.target.value })}
+                placeholder="Room name"
+              />
+              <select
+                value={roomForm.capacity}
+                onChange={event => setRoomForm({ ...roomForm, capacity: Number(event.target.value) })}
+              >
+                {[2, 3, 4, 5, 6, 7, 8].map(capacity => (
+                  <option key={capacity} value={capacity}>{capacity} players</option>
+                ))}
+              </select>
+              <select
+                value={roomForm.gameType}
+                onChange={event => setRoomForm({ ...roomForm, gameType: event.target.value })}
+              >
+                <option value="AOE_ROR">AOE ROR</option>
+                <option value="AOE_HD">AOE HD</option>
+              </select>
+              <button className="btn-primary" disabled={isBusy} onClick={createRoom}>
+                <Plus size={16} /> Create
+              </button>
+            </div>
+          </div>
+
+          <div className="room-grid">
+            {roomCards.map(room => {
+              const isHost = room.host.toLowerCase() === effectiveNickname.toLowerCase();
+              const canJoin = !isHost && room.status === 'in_lobby';
+
+              return (
+                <motion.div whileHover={{ y: -2 }} key={room.id} className="room-card platform-room-card">
+                  <div className="room-card-head">
+                    <div>
+                      <h4>{room.name}</h4>
+                      <span className="room-host">
+                        {isHost ? <Crown size={14} /> : <Users size={14} />}
+                        {room.host}
+                      </span>
+                    </div>
+                    <span className={`room-state ${room.status}`}>{room.status}</span>
+                  </div>
+
+                  <div className="room-meta">
+                    <span>{room.gameType}</span>
+                    <span>{room.players} / {room.capacity} players</span>
+                    <span>Host IP: {room.hostIp || 'pending'}</span>
+                  </div>
+
+                  <div className="room-actions">
+                    {isHost ? (
+                      <button disabled={isBusy} onClick={() => createInGameRoom(room)} className="room-join">
+                        <Play size={16} /> Tạo game
+                      </button>
+                    ) : (
+                      <button disabled={isBusy || !canJoin} onClick={() => joinInGameRoom(room)} className="room-join">
+                        <Wifi size={16} /> Vào game
+                      </button>
+                    )}
+
+                    {isHost && (
+                      <div className="icon-actions">
+                        <button className="icon-btn" disabled={isBusy} onClick={() => editRoom(room)} title="Edit room">
+                          <Edit3 size={16} />
+                        </button>
+                        <button className="icon-btn danger" disabled={isBusy} onClick={() => deleteRoom(room)} title="Delete room">
+                          <Trash2 size={16} />
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                </motion.div>
+              );
+            })}
+
+            {roomCards.length === 0 && (
+              <div className="empty-room-state">
+                <Gamepad2 size={28} />
+                <span>No rooms are available.</span>
+              </div>
+            )}
+          </div>
+        </section>
+
+        <section className="launcher-grid platform-tools">
+          <div className="panel">
+            <div className="panel-title">
+              <Cpu size={18} />
+              Runtime
+            </div>
+            <div className="status-list">
+              <div><span>Source</span><strong>{status.sourceGameExists ? 'Found' : 'Missing'}</strong></div>
+              <div><span>Manifest</span><strong>{status.runtime.manifestEntries || 0} files</strong></div>
+              <div><span>cnc-ddraw</span><strong>{status.cncDdrawAvailable ? 'Available' : 'Missing'}</strong></div>
+              <div><span>DirectPlay</span><strong>{status.diagnostics.directPlay.state}</strong></div>
+              <div><span>Runtime path</span><code>{settings.runtimePath || 'Not configured'}</code></div>
+            </div>
+            <div className="action-row">
+              <button className="btn-secondary" disabled={isBusy} onClick={() => runAction('Install runtime', () => invoke('game:install')).catch(() => {})}>
+                <Download size={16} /> Install
+              </button>
+              <button className="btn-secondary" disabled={isBusy} onClick={() => runAction('Repair runtime', () => invoke('game:repair')).catch(() => {})}>
+                <RefreshCcw size={16} /> Repair
+              </button>
+              <button className="btn-secondary" disabled={isBusy} onClick={() => runAction('Apply cnc-ddraw', () => invoke('patch:applyCncDdraw')).catch(() => {})}>
+                <Wrench size={16} /> Patch
+              </button>
+            </div>
+          </div>
+
+          <div className="panel">
+            <div className="panel-title">
+              <Monitor size={18} />
+              Process Manager
+            </div>
+            <div className="process-readout">
+              <div><span>Executable</span><strong>{settings.exeName}</strong></div>
+              <div><span>PID</span><strong>{runningProcess?.pid || status.process.trackedPid || '-'}</strong></div>
+              <div><span>Resolution</span><strong>{settings.resolution.width}x{settings.resolution.height}</strong></div>
+            </div>
+            <div className="action-row">
+              <button className="btn-primary" disabled={isBusy} onClick={handleLaunch}>
+                <Play size={16} /> Start
+              </button>
+              <button className="btn-secondary" disabled={isBusy || !status.process.running} onClick={() => runAction('Focus game', () => invoke('game:focus')).catch(() => {})}>
+                <Focus size={16} /> Focus
+              </button>
+              <button className="btn-secondary danger" disabled={isBusy || !status.process.running} onClick={() => runAction('Stop game', () => invoke('game:stop')).catch(() => {})}>
+                <Square size={16} /> Stop
+              </button>
+            </div>
+          </div>
+
+          <div className="panel">
+            <div className="panel-title">
+              <Radio size={18} />
+              Live Telemetry
+            </div>
+            <div className="status-list">
+              <div><span>State</span><strong>{telemetry?.gameState || 'offline'}</strong></div>
+              <div><span>Window</span><strong>{telemetry?.process?.window?.title || '-'}</strong></div>
+              <div><span>Captured</span><strong>{telemetry?.capturedAt ? new Date(telemetry.capturedAt).toLocaleTimeString() : '-'}</strong></div>
+            </div>
+            <p className="panel-note">{telemetry?.note || 'Read-only telemetry snapshot.'}</p>
+          </div>
+
+          <div className="panel">
+            <div className="panel-title">
+              <Trophy size={18} />
+              Competitive
+            </div>
+            <div className="status-list">
+              {leaderboard.slice(0, 3).map((rating, index) => (
+                <div key={rating.ID || rating.username}>
+                  <span>#{index + 1} {rating.username}</span>
+                  <strong>{rating.elo}</strong>
+                </div>
+              ))}
+              {leaderboard.length === 0 && <div><span>Leaderboard</span><strong>No matches yet</strong></div>}
+            </div>
+            <p className="panel-note">ELO, matches, replay metadata, and admin surfaces are available through the local API.</p>
+          </div>
+        </section>
       </main>
 
-      {/* Sidebar: Chat & Friends */}
-      <aside className="glass-card" style={{ margin: '10px', display: 'flex', flexDirection: 'column' }}>
-        <div style={{ padding: '20px', borderBottom: '1px solid var(--border-color)' }}>
-          <h4 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <MessageSquare size={18} /> Arena Chat
-          </h4>
+      <aside className="log-panel">
+        <div className="panel-title">
+          <Terminal size={18} />
+          Launcher Logs
         </div>
-        <div style={{ flex: 1, padding: '15px', fontSize: '0.85rem', color: 'var(--text-muted)' }}>
-          <p style={{ marginBottom: '10px' }}><span style={{ color: 'var(--primary-color)' }}>System:</span> Welcome to BP-Arena!</p>
-          <p style={{ marginBottom: '10px' }}><span style={{ color: '#fff' }}>ProGamer:</span> Mời anh em vào nhé, map Large 4-4.</p>
+        <div className="log-feed">
+          {logs.length === 0 && <p className="empty-log">No logs yet.</p>}
+          {logs.map((entry, index) => (
+            <div key={`${entry.ts}-${index}`} className={`log-line ${entry.level}`}>
+              <time>{entry.ts ? new Date(entry.ts).toLocaleTimeString() : '--:--:--'}</time>
+              <span>{entry.message}</span>
+            </div>
+          ))}
         </div>
-        <div style={{ padding: '15px', borderTop: '1px solid var(--border-color)' }}>
-          <div style={{ position: 'relative' }}>
-            <input 
-              type="text" 
-              placeholder="Type message..." 
-              style={{
-                width: '100%', padding: '10px', borderRadius: '8px',
-                background: 'var(--bg-input)', border: 'none', color: '#fff'
-              }} 
-            />
-            <ChevronRight size={18} style={{ position: 'absolute', right: '10px', top: '10px', color: 'var(--primary-color)' }} />
-          </div>
+        <div className="chat-shell">
+          <MessageSquare size={16} />
+          <span>Room changes stream through WebSocket.</span>
         </div>
       </aside>
 
-      {/* Settings Modal */}
-      <AnimatePresence>
-        {isSettingsOpen && (
-          <div style={{
-            position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
-            background: 'rgba(0,0,0,0.8)', display: 'flex', alignItems: 'center', justifyContent: 'center',
-            zIndex: 1000, backdropFilter: 'blur(4px)'
-          }}>
-            <motion.div 
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              className="glass-card"
-              style={{ width: '500px', padding: '40px', position: 'relative' }}
-            >
-              <h2 style={{ marginBottom: '30px', display: 'flex', alignItems: 'center', gap: '10px' }}>
-                <Settings size={24} color="var(--primary-color)" /> Game Settings
-              </h2>
+      {isSettingsOpen && (
+        <div className="modal-backdrop">
+          <div className="settings-modal">
+            <div className="modal-title">
+              <Settings size={22} />
+              <h3>Launcher Settings</h3>
+            </div>
 
-              <div style={{ marginBottom: '25px' }}>
-                <label style={{ display: 'block', marginBottom: '10px', fontSize: '0.9rem', color: 'var(--text-muted)' }}>
-                  AOE Executable Path (.exe)
-                </label>
-                <div style={{ display: 'flex', gap: '10px' }}>
-                  <input 
-                    type="text" 
-                    value={gamePath} 
-                    readOnly
-                    style={{
-                      flex: 1, padding: '10px', borderRadius: '8px',
-                      background: 'var(--bg-input)', border: '1px solid var(--border-color)',
-                      color: 'var(--text-muted)', fontSize: '0.85rem'
-                    }}
-                  />
-                  <button className="btn-secondary" onClick={handleBrowseGame}>
-                    Browse
-                  </button>
-                </div>
-              </div>
+            <div className="settings-grid">
+              <Field label="Nickname">
+                <input value={settings.nickname || ''} onChange={event => setSettings({ ...settings, nickname: event.target.value })} />
+              </Field>
+              <Field label="Executable">
+                <select value={settings.exeName} onChange={event => setSettings({ ...settings, exeName: event.target.value })}>
+                  {['Empiresxhd.exe', 'Empiresx.exe', 'Empiresxhdr.exe', 'Empiresxr.exe'].map(exe => (
+                    <option key={exe} value={exe}>{exe}</option>
+                  ))}
+                </select>
+              </Field>
+              <Field label="Width">
+                <input type="number" min="640" value={settings.resolution.width} onChange={event => setSettings({ ...settings, resolution: { ...settings.resolution, width: Number(event.target.value) } })} />
+              </Field>
+              <Field label="Height">
+                <input type="number" min="480" value={settings.resolution.height} onChange={event => setSettings({ ...settings, resolution: { ...settings.resolution, height: Number(event.target.value) } })} />
+              </Field>
+              <Field label="Window Mode">
+                <select value={settings.windowMode} onChange={event => setSettings({ ...settings, windowMode: event.target.value })}>
+                  <option value="windowed">Windowed</option>
+                  <option value="borderless">Borderless</option>
+                  <option value="fullscreen">Fullscreen</option>
+                </select>
+              </Field>
+              <Field label="Renderer">
+                <select value={settings.renderer} onChange={event => setSettings({ ...settings, renderer: event.target.value })}>
+                  <option value="gdi">GDI</option>
+                  <option value="auto">Auto</option>
+                  <option value="direct3d9">Direct3D9</option>
+                  <option value="opengl">OpenGL</option>
+                </select>
+              </Field>
+              <Field label="Launch Args">
+                <input
+                  value={(settings.launchArgs || []).join(' ')}
+                  onChange={event => setSettings({
+                    ...settings,
+                    launchArgs: event.target.value.split(/\s+/).filter(Boolean),
+                  })}
+                  placeholder="Optional executable args"
+                />
+              </Field>
+              <Field label="Matchmaking API">
+                <input
+                  value={settings.matchmaking?.apiBaseUrl || API_BASE_URL}
+                  onChange={event => setSettings({
+                    ...settings,
+                    matchmaking: {
+                      ...settings.matchmaking,
+                      apiBaseUrl: event.target.value,
+                    },
+                  })}
+                />
+              </Field>
+              <label className="settings-check">
+                <input
+                  type="checkbox"
+                  checked={settings.patches?.cncDdrawLaunchEnabled !== false}
+                  onChange={event => setSettings({
+                    ...settings,
+                    patches: {
+                      ...settings.patches,
+                      cncDdrawLaunchEnabled: event.target.checked,
+                    },
+                  })}
+                />
+                <span>Use cnc-ddraw when launching</span>
+              </label>
+            </div>
 
-              <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '40px' }}>
-                <button className="btn-primary" onClick={() => setIsSettingsOpen(false)}>
-                  Close
-                </button>
-              </div>
-            </motion.div>
+            <div className="path-block">
+              <span>Runtime path</span>
+              <code>{settings.runtimePath}</code>
+            </div>
+
+            <div className="modal-actions">
+              <button className="btn-secondary" onClick={() => setIsSettingsOpen(false)}>Cancel</button>
+              <button className="btn-primary" onClick={() => runAction('Save settings', () => saveSettings(settings)).then(() => setIsSettingsOpen(false)).catch(() => {})}>
+                Save
+              </button>
+            </div>
           </div>
-        )}
-      </AnimatePresence>
-
+        </div>
+      )}
     </div>
   );
 };
 
 export default Lobby;
-

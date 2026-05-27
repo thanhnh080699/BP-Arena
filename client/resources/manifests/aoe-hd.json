@@ -1,0 +1,1402 @@
+{
+    "schemaVersion":  1,
+    "generatedAt":  "2026-05-27T17:36:57.7436425Z",
+    "source":  "game/AOE-HD",
+    "files":  [
+                  {
+                      "path":  "CD.exe",
+                      "size":  32768,
+                      "sha256":  "4f13a966b913743e0153558d90afef41de075a7ebcabc227cc744bc097a4fba8"
+                  },
+                  {
+                      "path":  "Dplay60a.exe",
+                      "size":  255744,
+                      "sha256":  "35c96410d4d985cb09563f4a1319877bff8fb7eaa71c5d1c9adaf428b73aebcc"
+                  },
+                  {
+                      "path":  "dplayx.dll",
+                      "size":  213504,
+                      "sha256":  "cdd78ebf85f11b7668587be4b8cf47ffa78f83033e65273a0b6b95b65b69025e"
+                  },
+                  {
+                      "path":  "dpwsockx.dll",
+                      "size":  44032,
+                      "sha256":  "e3f62edc17e314895bc483b2884acb60f3c40222a1fbfda4e908070fae94613f"
+                  },
+                  {
+                      "path":  "EGOPlay.dll",
+                      "size":  196608,
+                      "sha256":  "b78a69857dab2df933025033016f6e1d3e3dd85bcf666dc41fe9d82da71aed8b"
+                  },
+                  {
+                      "path":  "Empiresx.exe",
+                      "size":  1592832,
+                      "sha256":  "30737f249c9020caee7dde8c22b8dea6cc60f6db75cdd5207f4b43a8106c4fd0"
+                  },
+                  {
+                      "path":  "Empiresxhd.exe",
+                      "size":  1592832,
+                      "sha256":  "e6e49a4d343587c7e8ff803746161349583e66e3fceb950e007b40e40e81a91b"
+                  },
+                  {
+                      "path":  "EmpiresxhdM.exe",
+                      "size":  1592832,
+                      "sha256":  "9e2ebcc09a702f0a4fc018a4fea20eddffbe7c16d4f36cc6835a543bf29049eb"
+                  },
+                  {
+                      "path":  "Empiresxhdr.exe",
+                      "size":  1592832,
+                      "sha256":  "cbd30031b32e81da458914171c5226a87522e7b5797937ef3db61a2d0523d07c"
+                  },
+                  {
+                      "path":  "EmpiresxhdrM.exe",
+                      "size":  1592832,
+                      "sha256":  "831d1fc56a57f7d3cf3342181f46fc786638273f40086757cc7fae159e27ef98"
+                  },
+                  {
+                      "path":  "EmpiresxM.exe",
+                      "size":  1592832,
+                      "sha256":  "9199224bd2d20407441c5428be61ab01162b2e076281f64885c0e210df8bf50f"
+                  },
+                  {
+                      "path":  "Empiresxr.exe",
+                      "size":  1592832,
+                      "sha256":  "65a12c62a33c654e448a6473fa2f174cd9b8fcca495c61a4e8887996926f3ee6"
+                  },
+                  {
+                      "path":  "EmpiresxrM.exe",
+                      "size":  1592832,
+                      "sha256":  "da243744577ab83ca5fc3300ee648eed5f7e8ae085e4df7690abb3329d831293"
+                  },
+                  {
+                      "path":  "exwe.dll",
+                      "size":  172032,
+                      "sha256":  "ba3f2b0e37dcf5bb6b50474bc3d47c27249630d8ad741705baa35bbc65cfc5d2"
+                  },
+                  {
+                      "path":  "language.dll",
+                      "size":  195584,
+                      "sha256":  "f1fbce0e79daa25abc100cbb57e710ffe23e42e53604f28d562a1453b1014d2f"
+                  },
+                  {
+                      "path":  "languageh.dll",
+                      "size":  22528,
+                      "sha256":  "72781ce4a40a035671476419cd827df5a5a08ced0d4208d01bcd154d86a48640"
+                  },
+                  {
+                      "path":  "languagex.dll",
+                      "size":  22528,
+                      "sha256":  "dba7fb12b1aeaca820f8d6071c0c5e760cfec7d664b4d5aa372efa46670ca144"
+                  },
+                  {
+                      "path":  "Service.dll",
+                      "size":  1754136,
+                      "sha256":  "48c125062d46a35ae0c07daf5a494b3dcea2e32979194a552a2cbf720d495a60"
+                  },
+                  {
+                      "path":  "Setupreg.exe",
+                      "size":  31232,
+                      "sha256":  "9e87f06db2b7a39e1cc230eed771cc090f3a299f8cfb770e3c1508829b0ab710"
+                  },
+                  {
+                      "path":  "startdplay.bat",
+                      "size":  64,
+                      "sha256":  "d3e1555a21e67b8ee81c2da7b5fdbd8492c068b5cb27dcf79a0906f9f3701b5b"
+                  },
+                  {
+                      "path":  "campaign/Armies at War a Combat Showcase.cpn",
+                      "size":  27848,
+                      "sha256":  "8747465ea51742d01df3feec5ece918bfee9f53ceb666a6d16dfbf83a36197b4"
+                  },
+                  {
+                      "path":  "campaign/Ascent of Egypt Learning Campaign.cpn",
+                      "size":  1315075,
+                      "sha256":  "ec2074de0003468e78737033b10ae187c1e0690bfd52e61a167ab2705a421a2b"
+                  },
+                  {
+                      "path":  "campaign/First Punic War.cpx",
+                      "size":  448410,
+                      "sha256":  "8d65cd16248320988090fbf16bd31cb2dfde46dd80a1bbf93191cace82f0fad2"
+                  },
+                  {
+                      "path":  "campaign/Glory of Greece.cpn",
+                      "size":  987900,
+                      "sha256":  "7d0e3bf7399c2e3938157de19f9cc650d364e91da1f816ed27e7013904590952"
+                  },
+                  {
+                      "path":  "campaign/Reign of the Hittites.cpn",
+                      "size":  583434,
+                      "sha256":  "9ac79247cb736f9a0afc389516aa17340eb94c52a8d2d360f45f8229a48a666f"
+                  },
+                  {
+                      "path":  "campaign/Rise of Rome 2 Ave Caesar.cpx",
+                      "size":  604455,
+                      "sha256":  "6c3c279993218e5327c0404d861584e914e53a8518fc4f715d6700639627684a"
+                  },
+                  {
+                      "path":  "campaign/Rise of Rome 3 Pax Romana.cpx",
+                      "size":  733906,
+                      "sha256":  "ceb8810295d1b4202414567e82e1608068f141400560cc6bb2c90b89db8543ee"
+                  },
+                  {
+                      "path":  "campaign/Rise of Rome Enemies of Rome.cpx",
+                      "size":  700246,
+                      "sha256":  "89e52691cff059360fc91b3f312cf5f2fd8218eb82cde9f7951f35354a66e0ea"
+                  },
+                  {
+                      "path":  "campaign/Rise of Rome.cpx",
+                      "size":  1062706,
+                      "sha256":  "664c0f572957a7328f08d9097977689c09905452305d8773bb4c498cd510b60e"
+                  },
+                  {
+                      "path":  "campaign/Voices of Babylon.cpn",
+                      "size":  895236,
+                      "sha256":  "79452e1d6728e720ae3af054e3e7c039396b056b73932aabf753181072ed7970"
+                  },
+                  {
+                      "path":  "campaign/Yamato Empire of the Rising Sun.cpn",
+                      "size":  941763,
+                      "sha256":  "d0c5c7750a1837b58de6adfccbc70e78e32de9873df091a0f20863aeb5e55510"
+                  },
+                  {
+                      "path":  "data/blkedge.dat",
+                      "size":  56631,
+                      "sha256":  "cde00d8394db8038b2bea584cdee0a9baa3bc8c6237157c0b2609e559aaafaae"
+                  },
+                  {
+                      "path":  "data/closedpw.exe",
+                      "size":  29184,
+                      "sha256":  "590e854edcc519e096c5b98a925f8fc28bd5f09028ac660043017e279ef0b63e"
+                  },
+                  {
+                      "path":  "data/coprgtl.ttf",
+                      "size":  62716,
+                      "sha256":  "607520e814ebd77845cfb7824d0afd47ffff9ea4f335c8f2db356d3c6396a99d"
+                  },
+                  {
+                      "path":  "data/dplay60a.exe",
+                      "size":  255744,
+                      "sha256":  "35c96410d4d985cb09563f4a1319877bff8fb7eaa71c5d1c9adaf428b73aebcc"
+                  },
+                  {
+                      "path":  "data/dplayx.dll",
+                      "size":  225280,
+                      "sha256":  "9738d36a78e88cbd7e57c693638a2a086339194a93425c4e56b9f705d25745fb"
+                  },
+                  {
+                      "path":  "data/dsound.dll",
+                      "size":  381952,
+                      "sha256":  "11fdb7fae1b407a081003308bdaaac6bbb5f50ba9b0f852de8322a1b1c7ce8a5"
+                  },
+                  {
+                      "path":  "data/ex_tcf.cfg",
+                      "size":  47,
+                      "sha256":  "fc975a0db5fd7a1d5a72577706edce6369676abd3a12e75017e538fa30b0c9f8"
+                  },
+                  {
+                      "path":  "data/graphic.drs",
+                      "size":  22604839,
+                      "sha256":  "0dd00789c883c0e82df53ff35dee5dc97a3dc2ad4ea7562c40ef328e0a2ef69d"
+                  },
+                  {
+                      "path":  "data/hexalter.exe",
+                      "size":  10752,
+                      "sha256":  "ac57afb81e41a14998e0a50b57302ea15581c8f0cf117248fbfb40c5049ea9e4"
+                  },
+                  {
+                      "path":  "data/inter1.drs",
+                      "size":  22594479,
+                      "sha256":  "325275db6b356a9a932d22d79e316bebe7d992462c9584e6b0481cd9382c5f31"
+                  },
+                  {
+                      "path":  "data/inter2.drs",
+                      "size":  12478064,
+                      "sha256":  "26f47f124f90cb1d44e983f111d15774e67e1d69ce38a80073c3a8dafc4781a5"
+                  },
+                  {
+                      "path":  "data/inter2k.drs",
+                      "size":  30464723,
+                      "sha256":  "7102b9de9a9b9445f6cac84efbb7848ae54319c8f0728e1c7ceb0dc1c5a269ae"
+                  },
+                  {
+                      "path":  "data/interfac.drs",
+                      "size":  48213641,
+                      "sha256":  "c1d39dc6a78d6bed4f0137944c6f225741f08193c26be92aee50258d98a8e88c"
+                  },
+                  {
+                      "path":  "data/shadow.col",
+                      "size":  1192,
+                      "sha256":  "ff5a5e1f5c7036765ca3de5e08782ef2733b5d60dcd3ff0cb0dc90c191b95c80"
+                  },
+                  {
+                      "path":  "data/sound.drs",
+                      "size":  8566017,
+                      "sha256":  "f5334a336b12ab2b89baaabdcb7264306678d2cd33981659af7b5f321e712b30"
+                  },
+                  {
+                      "path":  "data/tileedge.dat",
+                      "size":  142702,
+                      "sha256":  "ef5f5c1e7ec6e13e9391734b65f93da642d686de6303c9bbe4704522e6e62b92"
+                  },
+                  {
+                      "path":  "data/Trireme Bronze.ai",
+                      "size":  4388,
+                      "sha256":  "538f9eb9329ac8e40420994d497de232adf95033c885fc84fbf67d104dcba90c"
+                  },
+                  {
+                      "path":  "data/Trireme Iron.ai",
+                      "size":  4591,
+                      "sha256":  "ba8be0409dc948cc51e0ba465bd52e0a9488ae8d7944d12bb646d73bb4349f75"
+                  },
+                  {
+                      "path":  "data/vnarial.ttf",
+                      "size":  47992,
+                      "sha256":  "88a1e9feef2361eeaabadcd3028229f24439128fc4d6ec8066d26a9013fc1b39"
+                  },
+                  {
+                      "path":  "data/vnarialb.ttf",
+                      "size":  46728,
+                      "sha256":  "ba844a66c7ef051580a0d66139e295def672e630e68664b9bb4977978d3dc411"
+                  },
+                  {
+                      "path":  "data/vncoprgt.ttf",
+                      "size":  77256,
+                      "sha256":  "bfd50f4921e86f8e9a3608bbeb0c2224ad1f2d37c6d54ad8c1c5b7178de95411"
+                  },
+                  {
+                      "path":  "data/wndmode.dll",
+                      "size":  778752,
+                      "sha256":  "a3a4ca76a515801087d92ad9fc6c988bc0258691bf8f224c6ab82b941adfa1b0"
+                  },
+                  {
+                      "path":  "data/wndmode.ini",
+                      "size":  559,
+                      "sha256":  "935df020e0f5e07bc522ae6ee1308d723cc14e654d7f1494ddc13e29c468ee53"
+                  },
+                  {
+                      "path":  "data/htm/colorschememapping.xml",
+                      "size":  314,
+                      "sha256":  "65f3cdbc4390c81b94fa960b7362917443fc1e6a51e3f81e4cb4c4dfa09da4be"
+                  },
+                  {
+                      "path":  "data/htm/filelist.xml",
+                      "size":  338,
+                      "sha256":  "80314164932dc61b6899bd15e82fdd2339827f4a0b0786ab108f823d2860a539"
+                  },
+                  {
+                      "path":  "data/htm/themedata.thmx",
+                      "size":  3339,
+                      "sha256":  "65a1e83a2c052e128fa1e4bc2d0365b8bb2533945c14a10ae532aec371134a3d"
+                  },
+                  {
+                      "path":  "data2/Aggressive 3 Attackers.per",
+                      "size":  5395,
+                      "sha256":  "00008069dbf294db224cb6d13995e071da3e818967632b8e7ec8c1b3612f0ecd"
+                  },
+                  {
+                      "path":  "data2/Aggressive No Defend.per",
+                      "size":  5395,
+                      "sha256":  "a0ebf523c4906b0bab5a2863adcd973a9efa7f49dff0146444012f6981107a7d"
+                  },
+                  {
+                      "path":  "data2/Aggressive.per",
+                      "size":  5395,
+                      "sha256":  "8c8a07462a85039f7c5559a101984d788e3debc70e3635fc6ce8c65ffd7acdd6"
+                  },
+                  {
+                      "path":  "data2/aoe.ply",
+                      "size":  4189,
+                      "sha256":  "8e6ea60f84477c29fdf6d440630b7c0b216b4fe40b94e4edf0b304109cd234ec"
+                  },
+                  {
+                      "path":  "data2/Archers Bronze.ai",
+                      "size":  3558,
+                      "sha256":  "5e35ae76700833f986360a9683904a1a721d246b1cea4a88e945127318ae0acc"
+                  },
+                  {
+                      "path":  "data2/Archers Iron.ai",
+                      "size":  3491,
+                      "sha256":  "bdc2788cf0887510cbb7f5a44ce32274c6038055cac61ea6f46b2e5ace72ffd2"
+                  },
+                  {
+                      "path":  "data2/Assyria Archer Bronze.ai",
+                      "size":  3460,
+                      "sha256":  "7706a826ffe874d3501809dd89ccc922f6f71d4d4c6c6d04ff077b60d1c1ae99"
+                  },
+                  {
+                      "path":  "data2/Assyria Archer Iron.ai",
+                      "size":  4131,
+                      "sha256":  "a95c241605d6792faba75f4592a72a0799d8674dc5da264974d20ea0b458cef3"
+                  },
+                  {
+                      "path":  "data2/Assyria Ballista.ai",
+                      "size":  3950,
+                      "sha256":  "14f2a5246309ad0ec3ad3da642de2d946a006a8d38bc22b2ff370ab9009441a1"
+                  },
+                  {
+                      "path":  "data2/Assyria Bowmen.ai",
+                      "size":  3943,
+                      "sha256":  "2cb7875a3b211d7d305b9686262158177cfee2750a581ed2a4d8e79e46014b4c"
+                  },
+                  {
+                      "path":  "data2/Assyria Bronze Water.ai",
+                      "size":  4342,
+                      "sha256":  "cad3491acfc288e92f2a8459ff8b273a7b3bdf1782916a7c723a87f27cdbecef"
+                  },
+                  {
+                      "path":  "data2/Assyria Infantry Bronze.ai",
+                      "size":  4591,
+                      "sha256":  "57a22629f00eb15cf4118a7411cab1e9556766d337bb17191297a4e5d68d2472"
+                  },
+                  {
+                      "path":  "data2/Assyria Iron Water.ai",
+                      "size":  3874,
+                      "sha256":  "6d7e20f11695ea8bdbab5927dbede1f56fdc64fdb036e423c2a3c6528952fb0f"
+                  },
+                  {
+                      "path":  "data2/Babylon Scouts.ai",
+                      "size":  4490,
+                      "sha256":  "16731d1e09fda7ea92f1c34f621a3041ebf8bc8f5024eaa46a63d783160c004d"
+                  },
+                  {
+                      "path":  "data2/Babylon Swordsmen.ai",
+                      "size":  4243,
+                      "sha256":  "658ee9bd852ba2392857ef52c9bec91cef97b5af8bda06c676d2423228eb001f"
+                  },
+                  {
+                      "path":  "data2/Babylon Water.ai",
+                      "size":  4937,
+                      "sha256":  "9d2c37773045d4974f72336777ec2fa479c37a6f01730b3fedd8c89fa9ed4929"
+                  },
+                  {
+                      "path":  "data2/Carthage Bronze Water.ai",
+                      "size":  4022,
+                      "sha256":  "2dac5645481ba64ea54be7dadfb2833ac3ed5346ee15bc902026d0f57632b2cf"
+                  },
+                  {
+                      "path":  "data2/Carthage Iron Water.ai",
+                      "size":  4025,
+                      "sha256":  "5725735e1eaf10d8adae1b1ff465873e6e6e7b9e4968389ab3c88c1c83c72a90"
+                  },
+                  {
+                      "path":  "data2/Carthage Phalanx.ai",
+                      "size":  3579,
+                      "sha256":  "dd96c6c57a7b3b7e6d75635222f780fe85b95c01c933dd6826bb9585a83eda5c"
+                  },
+                  {
+                      "path":  "data2/Carthage War Elephant.ai",
+                      "size":  3550,
+                      "sha256":  "7b8a776f1e8336505de7e8149c09d84fd8f6baee1fd558f24a7ae7a80a22d352"
+                  },
+                  {
+                      "path":  "data2/Cav Archer Iron.ai",
+                      "size":  2808,
+                      "sha256":  "0d5acf54e864a6816176c844b840252de93e2de25b14f9674f67973f9468cffe"
+                  },
+                  {
+                      "path":  "data2/Cavalry Bronze.ai",
+                      "size":  2923,
+                      "sha256":  "82f28d1b97c7927c73f572b632350d96e8bbfcb1c73fcfe2f67ab117a3c88813"
+                  },
+                  {
+                      "path":  "data2/Cavalry Iron.ai",
+                      "size":  2935,
+                      "sha256":  "94dadb32c0890ec54e384d89748729177dccd30069bf39c27afb5d7108382402"
+                  },
+                  {
+                      "path":  "data2/Choson Axemen.ai",
+                      "size":  4579,
+                      "sha256":  "fa89d685694980ed5942edf49805f28600b434c30775070260b5f8d4e2e896b3"
+                  },
+                  {
+                      "path":  "data2/Choson Bronze Water.ai",
+                      "size":  4630,
+                      "sha256":  "aef44ce939c023958b78a95caf21c269107100e3a66ab067dc0f97d4609d25b1"
+                  },
+                  {
+                      "path":  "data2/Choson Iron Water.ai",
+                      "size":  5009,
+                      "sha256":  "aeb5d7a8e49470283409d7f105709aca28cf5f90c98a452b55da09ba2347f6ae"
+                  },
+                  {
+                      "path":  "data2/Choson Priests.ai",
+                      "size":  4404,
+                      "sha256":  "704da8e12d620b8d249650fb56b59f50f217dbe8b9875e75ad1b7fecf459a3b9"
+                  },
+                  {
+                      "path":  "data2/Choson Swordsmen.ai",
+                      "size":  4310,
+                      "sha256":  "ed84d068c8df05f6ffe93c30b6580f6112403a6945ee2511cc7696ed310278d6"
+                  },
+                  {
+                      "path":  "data2/Choson.ai",
+                      "size":  238833,
+                      "sha256":  "0ae34f212ac760139d82d2a58445ea82e7f3698986ef72efb734e836bdfcf67d"
+                  },
+                  {
+                      "path":  "data2/Choson.aio",
+                      "size":  239400,
+                      "sha256":  "e928a586de7a8a7dbd7e34119f4d5b052e18bc2d2e9494b394f6726e52d690fd"
+                  },
+                  {
+                      "path":  "data2/Death Match Assyria Water.ai",
+                      "size":  4079,
+                      "sha256":  "68c6977ca700c419efea18e79776ec9dc014d1d9b45ef3f77e0e31db7362dca0"
+                  },
+                  {
+                      "path":  "data2/Death Match Assyria.ai",
+                      "size":  4140,
+                      "sha256":  "a9dae6990cc2efa52f023f0048032f2c3f1c12003532ea0e7fd9cb4abb5bba5f"
+                  },
+                  {
+                      "path":  "data2/Death Match Babylon Water.ai",
+                      "size":  4705,
+                      "sha256":  "806483d423b2164b717357ba8e07159dd0ad8ec636f0a75f8e1ebe6e45c0509d"
+                  },
+                  {
+                      "path":  "data2/Death Match Babylon.ai",
+                      "size":  4440,
+                      "sha256":  "d4709c0a69baf9e265b0803cfb3f9d3ac5038c71047032295da29d80e070d657"
+                  },
+                  {
+                      "path":  "data2/Death Match Carthage Water.ai",
+                      "size":  3524,
+                      "sha256":  "2ac91cd02f852318c2f8762cabab518ff911cbcc9ebbccd4a07cea42c2a84ed4"
+                  },
+                  {
+                      "path":  "data2/Death Match Carthage.ai",
+                      "size":  3275,
+                      "sha256":  "edfbe0eaaab0cc86eb0703f17a1b92bf03656d494325998ca7e817425433261d"
+                  },
+                  {
+                      "path":  "data2/Death Match Choson Water.ai",
+                      "size":  4582,
+                      "sha256":  "b78751955b98a7a08636833f0e5357ddeb9c37c784ded5004415fc4c6d57de70"
+                  },
+                  {
+                      "path":  "data2/Death Match Choson.ai",
+                      "size":  4460,
+                      "sha256":  "5c7c634c0f971aa114467431c39f0c201b41af6371a32edea3c12f1a123efc30"
+                  },
+                  {
+                      "path":  "data2/Death Match Egypt Water.ai",
+                      "size":  5329,
+                      "sha256":  "9ff267341058fd4225ac7a7d7323ac2171a59621a3ee24beba420846c1a25401"
+                  },
+                  {
+                      "path":  "data2/Death Match Egypt.ai",
+                      "size":  4623,
+                      "sha256":  "9d9bc1c5e6aeab9e07f42de658486d61f310b60c3ca592f908928b1886f694ab"
+                  },
+                  {
+                      "path":  "data2/Death Match Greek Water.ai",
+                      "size":  4820,
+                      "sha256":  "004ad76e6561ec3c47027dcf7fc50a273545cab14a54a93081a86306a6bba09e"
+                  },
+                  {
+                      "path":  "data2/Death Match Greek.ai",
+                      "size":  3979,
+                      "sha256":  "0ebd01c8e63806be20b2c457cd38ae4671926aaf4dd09659224b315a5e5618b0"
+                  },
+                  {
+                      "path":  "data2/Death Match Hittite Water.ai",
+                      "size":  3621,
+                      "sha256":  "9efff1aa8bfb5b88825d0439b767db82dae00508c98397bdc09062424ef92ec9"
+                  },
+                  {
+                      "path":  "data2/Death Match Hittite.ai",
+                      "size":  3240,
+                      "sha256":  "db88ad1ee895a87a717c987c06ffeee5ddac6bf68d0e8f920702d50727b1769c"
+                  },
+                  {
+                      "path":  "data2/Death Match Macedon Water.ai",
+                      "size":  4422,
+                      "sha256":  "310e725348ec22f84899de19beb3084536bf882134b1215dc891e47e0a506517"
+                  },
+                  {
+                      "path":  "data2/Death Match Macedon.ai",
+                      "size":  3626,
+                      "sha256":  "5475608052eddbecf2705cc8561a09149e8a7b1a6e50c1911076f9136baff071"
+                  },
+                  {
+                      "path":  "data2/Death Match Minoa Water.ai",
+                      "size":  3551,
+                      "sha256":  "d9e326ecc8954814d072b800abdb40895cbfd115fd9c330694ddada3889a6a41"
+                  },
+                  {
+                      "path":  "data2/Death Match Minoa.ai",
+                      "size":  3467,
+                      "sha256":  "814b43d1399a3757e0181d64c9bdb95d9474e3a9f9dea1dfecabd397285e1f6d"
+                  },
+                  {
+                      "path":  "data2/Death Match Palmyra Water.ai",
+                      "size":  4288,
+                      "sha256":  "5274f2b978815b61df9fc1d6331852fb93962c030213f4be0558bc5c71a7f13d"
+                  },
+                  {
+                      "path":  "data2/Death Match Palmyra.ai",
+                      "size":  3493,
+                      "sha256":  "796e03bda3c8be7cf83dd0df5a6ecd9d849907aaaa08a559f30a48783db65823"
+                  },
+                  {
+                      "path":  "data2/Death Match Persia Water.ai",
+                      "size":  4758,
+                      "sha256":  "5443f6f64ea2f0cf0991f08d214ef18db8cad63688ef49935eb04c86c06d438c"
+                  },
+                  {
+                      "path":  "data2/Death Match Persia.ai",
+                      "size":  4271,
+                      "sha256":  "3de31797ee1d149ee02c993d60e5734528012275d5534e1b879c382fd282e4c6"
+                  },
+                  {
+                      "path":  "data2/Death Match Phoenicia Water.ai",
+                      "size":  4445,
+                      "sha256":  "836fc7caa94b947ccebb3e98a54af2bd963a0d9070bd9ab48e86439cfb5d3e00"
+                  },
+                  {
+                      "path":  "data2/Death Match Phoenicia.ai",
+                      "size":  4028,
+                      "sha256":  "7e7f9d7b1f80281106a191101a07615c992936b74e2081de513a39bcdc4e55f0"
+                  },
+                  {
+                      "path":  "data2/Death Match Rome Water.ai",
+                      "size":  4796,
+                      "sha256":  "73e77267e5c474cec9296c4495c8f7161ba0e5f37ae29801775c492e4638998f"
+                  },
+                  {
+                      "path":  "data2/Death Match Rome.ai",
+                      "size":  4266,
+                      "sha256":  "a4632ab90f82414e25adb0c2cff2e169811300cf9d5c8f44d089a410d968e8ac"
+                  },
+                  {
+                      "path":  "data2/Death Match Shang Water.ai",
+                      "size":  4441,
+                      "sha256":  "f1dacf9b052eaea2d9e6eae225dcaf71059250595f50089e27d5c75e7cd81430"
+                  },
+                  {
+                      "path":  "data2/Death Match Shang.ai",
+                      "size":  4120,
+                      "sha256":  "ef188feafc7a075a6ea662da32fd8f33679f88f94ce35473b88085430a81dd79"
+                  },
+                  {
+                      "path":  "data2/Death Match Sumeria Water.ai",
+                      "size":  4144,
+                      "sha256":  "c3f5b0e143d93e1491f23ec884d4d464474ebb6e7c6ebe10795c278933de58ef"
+                  },
+                  {
+                      "path":  "data2/Death Match Sumeria.ai",
+                      "size":  3409,
+                      "sha256":  "3fdd3820ea728bb6498f1d8e6ecaa6ac76a81110a9b65f88a021b81a39d9a9f7"
+                  },
+                  {
+                      "path":  "data2/Death Match Yamato Water.ai",
+                      "size":  5084,
+                      "sha256":  "47711261e00aae5b1babe81a3aeb9a960d45689c9aae8ebc975b38ba4826260e"
+                  },
+                  {
+                      "path":  "data2/Death Match Yamato.ai",
+                      "size":  3640,
+                      "sha256":  "5eb65395bb430030211797a739def3a1c59c3b89c49b96fed99d03e5594a345f"
+                  },
+                  {
+                      "path":  "data2/Death Match.per",
+                      "size":  6236,
+                      "sha256":  "b8deb61fd007c7f59e83774a2dc28f947a8556d01cbe54bc10350a928575f3de"
+                  },
+                  {
+                      "path":  "data2/Default.ai",
+                      "size":  15711,
+                      "sha256":  "ddedc6350f8790c5c2d2d32514582fde58756d0781f2221adc6676aac53bea1e"
+                  },
+                  {
+                      "path":  "data2/Default.cty",
+                      "size":  11000,
+                      "sha256":  "b0443c9e31cedd5cacb24df7a31644aeb52b02928a2b59eaf9085f788b4eeddf"
+                  },
+                  {
+                      "path":  "data2/Default.per",
+                      "size":  5396,
+                      "sha256":  "c222fec861178166ec09570cc65eb819f9c4354ff23d7177fe07014d03623267"
+                  },
+                  {
+                      "path":  "data2/Defensive.per",
+                      "size":  5396,
+                      "sha256":  "352b241c5a3ee57b48a8d7ac807a5d6515cc3e906fc06d2fffa46eb1d6805e4b"
+                  },
+                  {
+                      "path":  "data2/Egypt Archers Bronze.ai",
+                      "size":  3333,
+                      "sha256":  "d2ded309b786621edee322f0faba1a8a37f13feeb680c3b40688c7d7ef15dc4b"
+                  },
+                  {
+                      "path":  "data2/Egypt Archers Iron.ai",
+                      "size":  4347,
+                      "sha256":  "246e82e70aec3a23a6dbc2325e291f639ac69ead0189c2c6064dc3d05422727f"
+                  },
+                  {
+                      "path":  "data2/Egypt Chariot Archer.ai",
+                      "size":  4434,
+                      "sha256":  "9887d89bdfaac3acd27977259804e7207378da5a3785d4daae84400504df7d9c"
+                  },
+                  {
+                      "path":  "data2/Egypt Chariots.ai",
+                      "size":  3966,
+                      "sha256":  "c94d4ab77961885b25df7a4bb65f4578457a900e56563ac9f1383af71452e78a"
+                  },
+                  {
+                      "path":  "data2/Egypt War Elephants.ai",
+                      "size":  3743,
+                      "sha256":  "ad8a5cc170d07fb31afba62c274f6ca34e140069d149a46af1d3c65e164a283f"
+                  },
+                  {
+                      "path":  "data2/Egypt Water.ai",
+                      "size":  4249,
+                      "sha256":  "dadaafe2cbededfe46cbdf79016036a1eba81bc9e4c409025e3b91de9706c7bd"
+                  },
+                  {
+                      "path":  "data2/Elephant Archer Iron.ai",
+                      "size":  3348,
+                      "sha256":  "4e3cfdf81fe7e51abd892a407624d7868ad8ce2bd5baa872ca8fbb400856e291"
+                  },
+                  {
+                      "path":  "data2/graphic.drs",
+                      "size":  64,
+                      "sha256":  "7ad5228765ade21f7703efbb3ed5d97080a06d6d38cbf1950b6d66adf3f22246"
+                  },
+                  {
+                      "path":  "data2/Greek Bronze Water.ai",
+                      "size":  3927,
+                      "sha256":  "43a5506f7d12e5f3d74685a9cdd5c51427b110d63bacce6ef679dbaa50e9013b"
+                  },
+                  {
+                      "path":  "data2/Greek Iron Water.ai",
+                      "size":  4093,
+                      "sha256":  "a490f5cb61021379226dc674f6ba249cedcb774d8703fa7912b5bf6ed490ccdd"
+                  },
+                  {
+                      "path":  "data2/Greek Phalanx.ai",
+                      "size":  3556,
+                      "sha256":  "57e7ca024fbd0b1213ce06cb4d37f6163f43ae0b3c2d2c84598a9bc9ceb68968"
+                  },
+                  {
+                      "path":  "data2/Greek Priests.ai",
+                      "size":  3930,
+                      "sha256":  "e26a6ff68598573af71d42520a7fe7fba17da162c7ad3024b8119967dd53c4f6"
+                  },
+                  {
+                      "path":  "data2/Greek Siege.ai",
+                      "size":  4630,
+                      "sha256":  "19a5a98b4957af3d1a68c8782978aef5ea598165bea654669ac000fe95fb7686"
+                  },
+                  {
+                      "path":  "data2/Hittite Bowmen.ai",
+                      "size":  3663,
+                      "sha256":  "a761a98788feb76795bad84fba1c0cf91891878574d0d4afb174b6f02b453519"
+                  },
+                  {
+                      "path":  "data2/Hittite Elephant.ai",
+                      "size":  3444,
+                      "sha256":  "cd1d3c690b08aac1a0b959664ede1115b8b06a8a6ae8a36f0b677cca826f7c29"
+                  },
+                  {
+                      "path":  "data2/Hittite Horse Archers.ai",
+                      "size":  3313,
+                      "sha256":  "651ef060251cd10ee58f3b49a9999ac024d7fb6d7306cf56381e76d7f5892c10"
+                  },
+                  {
+                      "path":  "data2/Hittite Water.ai",
+                      "size":  3706,
+                      "sha256":  "69b5fd911fb686b1199633b7830b2134ceca80443a742ce3d1191c39ac3bb976"
+                  },
+                  {
+                      "path":  "data2/Immortal Assyria.ai",
+                      "size":  3237,
+                      "sha256":  "30ab0cc86fb4ac4805b1f3d5ffb66536af1034c107085ebef341fccaec7b36af"
+                  },
+                  {
+                      "path":  "data2/Immortal Egypt.ai",
+                      "size":  4212,
+                      "sha256":  "b620006bc4408543c4ef83aaa63508f67c4e1665d075b903842441de3c4b3722"
+                  },
+                  {
+                      "path":  "data2/Immortal Greek.ai",
+                      "size":  4107,
+                      "sha256":  "573db0b0b46e47d0fe1451bececa381372ebd1945dd093b088383114d3061c67"
+                  },
+                  {
+                      "path":  "data2/Immortal Minoa.ai",
+                      "size":  3421,
+                      "sha256":  "7c4c39cecc7513119abc03c330854a040d50127b01921d7b71890c382c2dfa70"
+                  },
+                  {
+                      "path":  "data2/Immortal Sumeria.ai",
+                      "size":  3780,
+                      "sha256":  "ea82fff8b15accb60e6b0f09681cb838e0319259b688635f4fc013b462ec96bd"
+                  },
+                  {
+                      "path":  "data2/Immortal Yamato.ai",
+                      "size":  3627,
+                      "sha256":  "8eb90d6228fecc80867ba9de7ff02d81f51dc6d9861994b3ce90c1e5efc86f58"
+                  },
+                  {
+                      "path":  "data2/Infantry Bronze.ai",
+                      "size":  3419,
+                      "sha256":  "e90fe9c87b04e66e11b117a9232855b7c06f09a4c065accf7a1a48a0086bc9f0"
+                  },
+                  {
+                      "path":  "data2/Infantry Stone.ai",
+                      "size":  3813,
+                      "sha256":  "c2ba0b429af23dbd7645aadfb6b9f02882d587689aff9cb60634e906a9f44efe"
+                  },
+                  {
+                      "path":  "data2/Infantry Tool.ai",
+                      "size":  3544,
+                      "sha256":  "e241811cd153b3728b4cf6b4bcac204808b4bcd9dda048e9d94be2bd2392d35b"
+                  },
+                  {
+                      "path":  "data2/interfac.drs",
+                      "size":  64,
+                      "sha256":  "7ad5228765ade21f7703efbb3ed5d97080a06d6d38cbf1950b6d66adf3f22246"
+                  },
+                  {
+                      "path":  "data2/list.cr",
+                      "size":  7836,
+                      "sha256":  "0576e4b1130e3822d0b33f73eddfcd03769010e4cb9c2c5a7c31d81e3caa8ebd"
+                  },
+                  {
+                      "path":  "data2/Macedon Bronze Water.ai",
+                      "size":  4251,
+                      "sha256":  "87bcf8ad17709576c1f8de9e0432b47b87dbd36c8e5c10db285287d5898459c4"
+                  },
+                  {
+                      "path":  "data2/Macedon Cavalry.ai",
+                      "size":  3399,
+                      "sha256":  "60be91058b765f837b454c2539168ff178f71fa27bf4affb368cf1de95410d3c"
+                  },
+                  {
+                      "path":  "data2/Macedon Elephant.ai",
+                      "size":  3560,
+                      "sha256":  "65bbe834f10bdfe59620fefc3849dc4c35fe3bb58e99bb1b26a3b453cb00a941"
+                  },
+                  {
+                      "path":  "data2/Macedon Iron Water.ai",
+                      "size":  3975,
+                      "sha256":  "2a3297c5059c5398ab3ecfcd8fc1cda43c525e72453d2a30e431935b97b71451"
+                  },
+                  {
+                      "path":  "data2/Macedon Phalanx.ai",
+                      "size":  4094,
+                      "sha256":  "7669039ab0b63ee567d67a93e7c6f4fc977c350982978e2bd657f8a40c46d867"
+                  },
+                  {
+                      "path":  "data2/Minoa Bronze Water.ai",
+                      "size":  3955,
+                      "sha256":  "bfa4a1b03915771adb449532a7801992ba6a3c39c0f8db592dac1419297c66e6"
+                  },
+                  {
+                      "path":  "data2/Minoa Composite Bowmen.ai",
+                      "size":  3940,
+                      "sha256":  "12ce47ff03376e48893afd11eb524f2d66bfb8e8f4bd79818fdbc92d2706e236"
+                  },
+                  {
+                      "path":  "data2/Minoa Iron Water.ai",
+                      "size":  3955,
+                      "sha256":  "3c19f5550ff2d2cac1eab26d4e3bbb511372bf0cc4f1ac0be94c2161f324f40c"
+                  },
+                  {
+                      "path":  "data2/Palmyra Bronze Water.ai",
+                      "size":  3826,
+                      "sha256":  "7bbf36ca6f8137075e98dcc7f09f528b67888e2520b4b931ff526e157ba80b21"
+                  },
+                  {
+                      "path":  "data2/Palmyra Composite Bow.ai",
+                      "size":  3540,
+                      "sha256":  "66a7d8e78bdccf77f734f58ba86b8268645c013dc277e46742091b2e8b55789b"
+                  },
+                  {
+                      "path":  "data2/Palmyra Elephant.ai",
+                      "size":  3623,
+                      "sha256":  "a4b8f8df0a60dcf17caab549d35b58705941fe8a2b3e65cc6d6837ce1be1db45"
+                  },
+                  {
+                      "path":  "data2/Palmyra Horse Archer.ai",
+                      "size":  3444,
+                      "sha256":  "65583d90ea62179b82452dc701142b980d7e663e05adffb1e7ec74f8468af2ad"
+                  },
+                  {
+                      "path":  "data2/Palmyra Iron Water.ai",
+                      "size":  4172,
+                      "sha256":  "6b545daf19d471b58e9ecff789fe4c740d921b9f72e0093f835df25f9e82bffd"
+                  },
+                  {
+                      "path":  "data2/Passive Aggressive.per",
+                      "size":  5395,
+                      "sha256":  "98fddd3f0b2ac801fb5b833a68abfb4362d08a0072e9a07e9b3cd10193889d43"
+                  },
+                  {
+                      "path":  "data2/Passive.per",
+                      "size":  5395,
+                      "sha256":  "985dadcee84669544e7275b3034abe7634f1fc7670c63f4487c09ad48a6170b0"
+                  },
+                  {
+                      "path":  "data2/Persia Bronze Water.ai",
+                      "size":  5104,
+                      "sha256":  "9015414b4202d6c5e6b0d7720bf5ba6b225347e7ff6f933c5b51e54d8acc885c"
+                  },
+                  {
+                      "path":  "data2/Persia Elephant Archers.ai",
+                      "size":  4387,
+                      "sha256":  "ea4133cba5caf0620a32c0f7dbc6a30ebd7cb926800768227c2f48fbebcf7922"
+                  },
+                  {
+                      "path":  "data2/Persia Iron Water.ai",
+                      "size":  4014,
+                      "sha256":  "4c8590b9bc8ea5bd5cea9fb74693944ab0ec60415f9bcdb448b776b0b835ce40"
+                  },
+                  {
+                      "path":  "data2/Persia Priests.ai",
+                      "size":  4165,
+                      "sha256":  "c39fd4122e0f272ca67020c18ae6da2c6eb53c2f0ea8b604792ee576dd7d519d"
+                  },
+                  {
+                      "path":  "data2/Persia War Elephant.ai",
+                      "size":  3213,
+                      "sha256":  "ba6f9be35b3b6271864c94925644e033de8ca64ace4c32cd8bdc6702f1034670"
+                  },
+                  {
+                      "path":  "data2/Phalanx Bronze.ai",
+                      "size":  2949,
+                      "sha256":  "12b3e07a94e80eb6cc36a9078c9e7af4f2904bdb5c568b26e840ed2424b0f588"
+                  },
+                  {
+                      "path":  "data2/Phalanx Iron.ai",
+                      "size":  3638,
+                      "sha256":  "d65eabc70ee668386db23f143fa7059164b53baafced3fc4809969f2f0f1ec6b"
+                  },
+                  {
+                      "path":  "data2/Phoenicia Elephants.ai",
+                      "size":  3787,
+                      "sha256":  "2533e3408dee7ba7ef70ab8996ea8943e7eb8d08b634bf47703f3ed3b9828fee"
+                  },
+                  {
+                      "path":  "data2/Phoenicia Water.ai",
+                      "size":  4278,
+                      "sha256":  "7f76d9c5c1e389c04d9501e59dd29f256c8a057fab30d294074fbedb67edf4a7"
+                  },
+                  {
+                      "path":  "data2/Priest Bronze.ai",
+                      "size":  3755,
+                      "sha256":  "09aed7dc9c8091c2703f5745c6a8c8264fffb30dadc032bd3d2125d5c8579dea"
+                  },
+                  {
+                      "path":  "data2/Priest Iron.ai",
+                      "size":  4393,
+                      "sha256":  "403981d471384c0199cc267c542c8951afe454944d3e215f1d1f78cddb118804"
+                  },
+                  {
+                      "path":  "data2/Random Map.per",
+                      "size":  6311,
+                      "sha256":  "3245043ac85b9bf5a08c4780f5adba89732c0aaba394e51ae83cf31a83c9531a"
+                  },
+                  {
+                      "path":  "data2/Rome Axemen.ai",
+                      "size":  4738,
+                      "sha256":  "15e613d9abde49d430b7701f9e1a0e50a4b5eb80abda36cd1f861ff13a500300"
+                  },
+                  {
+                      "path":  "data2/Rome Bronze Water.ai",
+                      "size":  4166,
+                      "sha256":  "06474a5e2bd2d9b01690e0eae2b89fef8443331d62505a6162390aaa67b21d28"
+                  },
+                  {
+                      "path":  "data2/Rome Iron Water.ai",
+                      "size":  3734,
+                      "sha256":  "e153b2c0a4bc1c3d6f2a9a490bd08a44490ba192e62677c444cf76a15789207f"
+                  },
+                  {
+                      "path":  "data2/Rome Legion.ai",
+                      "size":  4329,
+                      "sha256":  "88cefcebcc869a58323b5b7b57aafcb6188927b890073ebab9f410c9648c3326"
+                  },
+                  {
+                      "path":  "data2/Rome Siege.ai",
+                      "size":  3959,
+                      "sha256":  "381d6b9d898948710186e2b9576c1c243f299e8efd2597a866444d88f98c4d88"
+                  },
+                  {
+                      "path":  "data2/rules.rps",
+                      "size":  3400,
+                      "sha256":  "65f3a0f46b9f4af16ca5c0f51b54460bf98e9f745a9566b88764efc3c6484fc2"
+                  },
+                  {
+                      "path":  "data2/Shang Cavalry.ai",
+                      "size":  3532,
+                      "sha256":  "fbb5eaed7a7917d6cce0f8e1133f616e0a0104d06b6a27ae47a6e935afc002ac"
+                  },
+                  {
+                      "path":  "data2/Shang Clubmen.ai",
+                      "size":  4087,
+                      "sha256":  "3c16f03f2612f6e25b78db9916335297ac76c64c20bbb17b95810b624762ee26"
+                  },
+                  {
+                      "path":  "data2/Shang Heavy Cavalry.ai",
+                      "size":  3869,
+                      "sha256":  "2f3e51251d3e7f788ff576909d441e540e47c8210b9c36e739fac1e66721c869"
+                  },
+                  {
+                      "path":  "data2/Shang Water.ai",
+                      "size":  3863,
+                      "sha256":  "17c1197181e2763f45b23cba538e7fb835f23972b2e4339bd344b290242135ba"
+                  },
+                  {
+                      "path":  "data2/Sumeria Bronze Water.ai",
+                      "size":  3792,
+                      "sha256":  "878b74d7c4d12f0c51283be2ea04df4455cf3b1582c6b9b40188b4f9f5ce54b2"
+                  },
+                  {
+                      "path":  "data2/Sumeria Catapults.ai",
+                      "size":  3939,
+                      "sha256":  "4998cebb340bf958087c866dcd97d14833e581b519bedc7ac602432111db234f"
+                  },
+                  {
+                      "path":  "data2/Sumeria Chariots.ai",
+                      "size":  3751,
+                      "sha256":  "5f8842d7dcf715c080990e6cae6c3ff4ee06fa446943d84abbc5f513920614f0"
+                  },
+                  {
+                      "path":  "data2/Sumeria Iron Water.ai",
+                      "size":  4012,
+                      "sha256":  "e6b893e909f047bb6424e1b4689d68943330898b13fc2d9953095d012dcdfe2e"
+                  },
+                  {
+                      "path":  "data2/Sumeria Scouts.ai",
+                      "size":  4328,
+                      "sha256":  "a52966e49fdcbdd2adf4f1d732070f2a5bbeedb9e1f99b3426e24a1a569d31d7"
+                  },
+                  {
+                      "path":  "data2/Super Aggressive.per",
+                      "size":  5395,
+                      "sha256":  "2a07f8d49095cfc5a5058f4dd2e2d948d50bc6d0a05bab8e6b103cb3154d35ac"
+                  },
+                  {
+                      "path":  "data2/War Elephant Iron.ai",
+                      "size":  3569,
+                      "sha256":  "8261d220cf1f04437f797ce91e2ff88ba30407aedec5a1553d84454a4b3b70ca"
+                  },
+                  {
+                      "path":  "data2/Yamato Bronze Water.ai",
+                      "size":  4266,
+                      "sha256":  "859f1936f5e3a11159b6d07b68215be24954cdf95212851eb1e9a15363b4704d"
+                  },
+                  {
+                      "path":  "data2/Yamato Heavy Cavalry.ai",
+                      "size":  4028,
+                      "sha256":  "2bb4dff554aafdeb675c8bf95567e7f0704d9c0bbd300ccf22f5121c2ac8a2b3"
+                  },
+                  {
+                      "path":  "data2/Yamato Iron Water.ai",
+                      "size":  4275,
+                      "sha256":  "eb472ce36f77730bd2b4a9538408a37dd9b1da23b56e548312a59f0e19dec1ab"
+                  },
+                  {
+                      "path":  "savegame/game0.nfo",
+                      "size":  12,
+                      "sha256":  "31e2ae4b67d2b78015f46bebb44829f290f27324e0900a3b9798c04c5cd648e3"
+                  },
+                  {
+                      "path":  "savegame/game1.nfo",
+                      "size":  12,
+                      "sha256":  "31e2ae4b67d2b78015f46bebb44829f290f27324e0900a3b9798c04c5cd648e3"
+                  },
+                  {
+                      "path":  "savegame/mapdefault.bmp",
+                      "size":  175662,
+                      "sha256":  "e393e40853e7f9434353fce798d9fa57948e66ccb866b3dd0eb6e7e65aef51d3"
+                  },
+                  {
+                      "path":  "savegame/learn/default.uh",
+                      "size":  6,
+                      "sha256":  "b8629ed714ebd3f6133d5c16d829a594ad74476cb1947b204bb19840201df016"
+                  },
+                  {
+                      "path":  "scenario/scenario.inf",
+                      "size":  13413,
+                      "sha256":  "806af2c6dc2042ad672d336ce39159ae167c5e2d18b94fe2cc65580329f5ecea"
+                  },
+                  {
+                      "path":  "sound/Bird.wav",
+                      "size":  62118,
+                      "sha256":  "6796db013d7d83b06d777fb09ec215b3441caa404acf9d3db6ea38ea0d8591a9"
+                  },
+                  {
+                      "path":  "sound/Birds1.wav",
+                      "size":  171572,
+                      "sha256":  "65fa1f1c4ce9c6f257133ba4d7a7127e0acb8238c553f1e6359b2d7cd61bf01f"
+                  },
+                  {
+                      "path":  "sound/desert1.WAV",
+                      "size":  28862,
+                      "sha256":  "77538cbfc553cf477391e2220e5a4d76bcfc1b3c5229628deaf52c07b4385ea5"
+                  },
+                  {
+                      "path":  "sound/desert2.WAV",
+                      "size":  127266,
+                      "sha256":  "568b220d569deee4d2765b8c71a98bc182cdebfa0c8bedef2c808a1f17a70ff0"
+                  },
+                  {
+                      "path":  "sound/desert3.wav",
+                      "size":  173800,
+                      "sha256":  "9e047f53ac6cea35c20e0f7c7de99ae9d427779e847cc0e9f4483250bea99da5"
+                  },
+                  {
+                      "path":  "sound/desert4.WAV",
+                      "size":  162038,
+                      "sha256":  "5502afb53f75093de53e2b54edcf674894f600fd8dd7160663a385411efb41a9"
+                  },
+                  {
+                      "path":  "sound/forest1.wav",
+                      "size":  67890,
+                      "sha256":  "dd93c4c0c1f30e1d17ad287fbb218587493147b24deef2ae5934c372f0a96ce2"
+                  },
+                  {
+                      "path":  "sound/Forest2.WAV",
+                      "size":  51556,
+                      "sha256":  "86d7e16df978de2d59aae6c57761fe2bd012ac54d63d1742db29b045973973b2"
+                  },
+                  {
+                      "path":  "sound/Forest3.WAV",
+                      "size":  168054,
+                      "sha256":  "89fd1260eaca692b93c9d6fffb21c378f51437fb72c655a5aad4fb7f8f7171b0"
+                  },
+                  {
+                      "path":  "sound/forest4.WAV",
+                      "size":  114910,
+                      "sha256":  "33a007298046c77902faf60d1cad30924c79ce93d87e9a9dc8496592619b4088"
+                  },
+                  {
+                      "path":  "sound/Grass2.WAV",
+                      "size":  66558,
+                      "sha256":  "6e9de7c619b8cba70df6fb45fce0b948bd1c254659e06ad465332f778dffb7b9"
+                  },
+                  {
+                      "path":  "sound/grass3.WAV",
+                      "size":  147476,
+                      "sha256":  "5e033fa61c013e3db8b63e6477b1c4d2c10438db8a93656c20aab4c0d27a5243"
+                  },
+                  {
+                      "path":  "sound/Lake1.wav",
+                      "size":  214656,
+                      "sha256":  "eba633263631ccfa84042b3fbcf9e576dbe92b60fd67c97a94f442fcb14d43d4"
+                  },
+                  {
+                      "path":  "sound/Lost.mid",
+                      "size":  6898,
+                      "sha256":  "e831cf977c93adc3bad35c56b9fd93f708c95af9ca058cde9baf116ae2563ade"
+                  },
+                  {
+                      "path":  "sound/ocean1.wav",
+                      "size":  129142,
+                      "sha256":  "570e206d3818d09eb0992fd6cbd0959f3cf90c758174b1fa9796c950b9ff0a2c"
+                  },
+                  {
+                      "path":  "sound/ocean2.wav",
+                      "size":  63352,
+                      "sha256":  "c4bd1fa2db580b3c93a265fad127fcc2466c15c876f91ffa3b3f4361026184aa"
+                  },
+                  {
+                      "path":  "sound/ocean3.WAV",
+                      "size":  98400,
+                      "sha256":  "5234f68d2ba04c283b42cbd7ea804b177b5e5dcdf2b132493b2f164ffa80bd78"
+                  },
+                  {
+                      "path":  "sound/ocean4.WAV",
+                      "size":  168048,
+                      "sha256":  "9a6f0523889d4c398f2e6444c2a621f01f5ea58c6e5497fec98b3bbfb8e69fcc"
+                  },
+                  {
+                      "path":  "sound/ocean5.WAV",
+                      "size":  168048,
+                      "sha256":  "9a6f0523889d4c398f2e6444c2a621f01f5ea58c6e5497fec98b3bbfb8e69fcc"
+                  },
+                  {
+                      "path":  "sound/Open.mid",
+                      "size":  8151,
+                      "sha256":  "14ec5e0101b2d82b36ef4e8efbd1fa2f37e0c588978f127ed59fc836f515a162"
+                  },
+                  {
+                      "path":  "sound/stream2.wav",
+                      "size":  67472,
+                      "sha256":  "9ad1ff9d215b6c1e461ad7493803c0ccd8f717fe2a8afc17e1bd860d7039d32e"
+                  },
+                  {
+                      "path":  "sound/Taunt001.wav",
+                      "size":  19512,
+                      "sha256":  "0dd378d6a7f94cdb782f2fdcaa21611c46ef549ecdea5206ee57e16ba7cdd396"
+                  },
+                  {
+                      "path":  "sound/Taunt002.wav",
+                      "size":  18808,
+                      "sha256":  "9986f8f466ced178dc84d8423d494264aa5be98bc4b0131af400f54a39f0159d"
+                  },
+                  {
+                      "path":  "sound/Taunt003.wav",
+                      "size":  30496,
+                      "sha256":  "ba89041076f0f1ae533261ae7a1ec60254fc9bc71c66619e840e6cffde753c84"
+                  },
+                  {
+                      "path":  "sound/Taunt004.wav",
+                      "size":  66552,
+                      "sha256":  "68b08029efcc962060078a8bdc41b5f0bd7d56e97147123d9cec19b4a0198ffc"
+                  },
+                  {
+                      "path":  "sound/Taunt005.wav",
+                      "size":  31600,
+                      "sha256":  "865b6a659b22dfe1fe2b37c08af66a1cdd5c4edf3cec54fd1e24d378aca82593"
+                  },
+                  {
+                      "path":  "sound/Taunt006.wav",
+                      "size":  39222,
+                      "sha256":  "006103110268beb17e1ed3e4e743a9e3ea38c8a43860dcab549b484de8db7148"
+                  },
+                  {
+                      "path":  "sound/Taunt007.wav",
+                      "size":  36344,
+                      "sha256":  "a0a1b0f7bf136f781f5b0f75cdfc00f3911ddb966081491324acf081abb6cd8e"
+                  },
+                  {
+                      "path":  "sound/TAUNT008.wav",
+                      "size":  43198,
+                      "sha256":  "2201dfe23984552cb48387541a5874f00b85c180f0756f17a06683c7b2a37669"
+                  },
+                  {
+                      "path":  "sound/TAUNT009.wav",
+                      "size":  198110,
+                      "sha256":  "14004c251606fa9c4ca052eabb42a6def763dc7082f57a17a496b17483e3efa3"
+                  },
+                  {
+                      "path":  "sound/Taunt010.wav",
+                      "size":  52690,
+                      "sha256":  "2296a6922295dadcbbf92681951118e5ac1fce98fe89867df77e9cb68e6e6fcc"
+                  },
+                  {
+                      "path":  "sound/TAUNT011.wav",
+                      "size":  194086,
+                      "sha256":  "8b0c2e0d2d6f4921ed8ec8d1e04182be640c0a667dfd2d87b389a23366a35d9e"
+                  },
+                  {
+                      "path":  "sound/taunt012.wav",
+                      "size":  41454,
+                      "sha256":  "90571f0f8ef2e369c84662dbe55ff2ccee63edd5542b6140b52f17e36804100c"
+                  },
+                  {
+                      "path":  "sound/taunt013.wav",
+                      "size":  40056,
+                      "sha256":  "57e75af891541715f4dffd431a6e3594f2f27cdce6f952bda2a5d41186bc24c4"
+                  },
+                  {
+                      "path":  "sound/taunt014.wav",
+                      "size":  70472,
+                      "sha256":  "a016677faf2573fc7447414854b7b5eb1fcdb7cc7817d1f805ae1f557e85da2a"
+                  },
+                  {
+                      "path":  "sound/Taunt015.wav",
+                      "size":  42026,
+                      "sha256":  "9048ad10a9e087ce53a74acd7df5c292c534b4f10a2d76e2595731c5103c4ebb"
+                  },
+                  {
+                      "path":  "sound/TAUNT016.wav",
+                      "size":  57312,
+                      "sha256":  "cf66d2bf088df5ac171b212f8f9b22917b2f8d259671d5bdd3b36189c29163e9"
+                  },
+                  {
+                      "path":  "sound/TAUNT017.wav",
+                      "size":  39264,
+                      "sha256":  "63ba5bf5c8e2b4fc4b58b801bf03bfaca40db28b4ac64f62c7dd34a2384b03c9"
+                  },
+                  {
+                      "path":  "sound/TAUNT018.wav",
+                      "size":  59024,
+                      "sha256":  "46d246931b8afc3888c7c30c7102057262d17b3b528e2c999aeaaeb6915dbb27"
+                  },
+                  {
+                      "path":  "sound/Taunt019.wav",
+                      "size":  78852,
+                      "sha256":  "504a4783ffc5d7ab19fa2b253349a15f9f774edf0d9e6a3f431b60bc544ad738"
+                  },
+                  {
+                      "path":  "sound/Taunt020.wav",
+                      "size":  74054,
+                      "sha256":  "e15841586be20e0d1faca6c8eea06cfaf57b101da61f438b495ff5981b7918a4"
+                  },
+                  {
+                      "path":  "sound/Taunt021.wav",
+                      "size":  47026,
+                      "sha256":  "5cbcaffc5cf00a08924c1d4db90ad56695a1cfbbcaaf3ed7b9b44efcdf7468d2"
+                  },
+                  {
+                      "path":  "sound/Taunt022.wav",
+                      "size":  72762,
+                      "sha256":  "019b620914aac71337e9700e72a908d1949abbb88adff356319591db242e96ee"
+                  },
+                  {
+                      "path":  "sound/Taunt023.wav",
+                      "size":  23992,
+                      "sha256":  "dbc09daf70405942149b8be3023af52938c091525b1b2264d9a05b263ea7ecbf"
+                  },
+                  {
+                      "path":  "sound/Taunt024.wav",
+                      "size":  45968,
+                      "sha256":  "538b61dc26eb4f954eca2459369b989e3fa5357522f932ef799672c83cd047d9"
+                  },
+                  {
+                      "path":  "sound/Taunt025.wav",
+                      "size":  45446,
+                      "sha256":  "eef19623d7aba076d26bfbac8dea4a3cb6b7d19ca90b97363af05f4bfb54ab7c"
+                  },
+                  {
+                      "path":  "sound/Taunt026.wav",
+                      "size":  66880,
+                      "sha256":  "3c9c75b6af91fad0128f3f3c1f202adcd94cf2114036b6972f8b3470416ed1e3"
+                  },
+                  {
+                      "path":  "sound/Taunt027.wav",
+                      "size":  24496,
+                      "sha256":  "b501b57f9c91796aa1564a52ccdb56f6ee2efc6bf84de39cb9bd5dfeed418b0f"
+                  },
+                  {
+                      "path":  "sound/Taunt028.wav",
+                      "size":  58730,
+                      "sha256":  "def27b3f761b918eebe18d8d5a9db57fab45de43093691dea5e35613746c8103"
+                  },
+                  {
+                      "path":  "sound/Taunt029.wav",
+                      "size":  49984,
+                      "sha256":  "c77896fa75a774010a88873cb796797731d44305ad1fe46bf3567fcc50af8764"
+                  },
+                  {
+                      "path":  "sound/Taunt030.wav",
+                      "size":  95408,
+                      "sha256":  "fe461fb6635e717f7718e97b021cde01e9e14265fca117c4dc0e175fc0f77221"
+                  },
+                  {
+                      "path":  "sound/Taunt031.wav",
+                      "size":  73400,
+                      "sha256":  "2ba96c10d514e31c52412ae9cb4b50530791f02bbd8775e9d4f2578c885be7c3"
+                  },
+                  {
+                      "path":  "sound/Taunt032.wav",
+                      "size":  99074,
+                      "sha256":  "7548004f871fa5ad600b31317eb09d6214892b5258ac1cb7e2fa6dd4aff2675c"
+                  },
+                  {
+                      "path":  "sound/Taunt033.wav",
+                      "size":  67248,
+                      "sha256":  "17a2606250ca1d2a848c29e837a136209cfc92a1a895786c5e9b7eba5b7a018f"
+                  },
+                  {
+                      "path":  "sound/Taunt034.wav",
+                      "size":  498360,
+                      "sha256":  "b1f2f386bdb994eccde32325436d5dcabe01e17d81cc600ef1a836b80b051e7c"
+                  },
+                  {
+                      "path":  "sound/Taunt035.wav",
+                      "size":  49252,
+                      "sha256":  "e2814b360a8821dedf880f0490904430f06476fb22ff267b4c7da521f360512f"
+                  },
+                  {
+                      "path":  "sound/Taunt036.wav",
+                      "size":  46408,
+                      "sha256":  "502bd6b6e99120c1f77a40b8fbcf793fca29463d94719ad30a2a765bb0c69eb1"
+                  },
+                  {
+                      "path":  "sound/Taunt037.wav",
+                      "size":  53402,
+                      "sha256":  "ab3a150e34d0ac0c3500ec1a88a070cd4cb8258c44df0352d09d75839f7543b7"
+                  },
+                  {
+                      "path":  "sound/Taunt038.wav",
+                      "size":  48108,
+                      "sha256":  "685b28a2c740993bd376ff078be233af2c2db023cd302ce8ec5f9bed85058c32"
+                  },
+                  {
+                      "path":  "sound/Taunt039.wav",
+                      "size":  188816,
+                      "sha256":  "fc5f47470eb356caac5b1152c1e0cccb3be1d8ecd76fbd45b6df7f14f0f4dd72"
+                  },
+                  {
+                      "path":  "sound/Taunt040.wav",
+                      "size":  46080,
+                      "sha256":  "36141b793579845d1f58589833c4e2bb40d601f184511f02b75e43ae0a9409dc"
+                  },
+                  {
+                      "path":  "sound/Taunt041.wav",
+                      "size":  51448,
+                      "sha256":  "1cf38db33c2be2c1a5bbc9b25c74142163dd36f334bb3770ee953b105f0f2c9c"
+                  },
+                  {
+                      "path":  "sound/Taunt042.wav",
+                      "size":  76778,
+                      "sha256":  "4684586e1484b3135b5bd3d7b430748cd074add1c8b6784428e185fef7e6fed6"
+                  },
+                  {
+                      "path":  "sound/Taunt043.wav",
+                      "size":  58190,
+                      "sha256":  "5717cc0c337254bbfc56a82796b3aeeb3409b996d03e1bb4cc7d200c56346d12"
+                  },
+                  {
+                      "path":  "sound/Taunt044.wav",
+                      "size":  61372,
+                      "sha256":  "57225ba17531627e15780b07180ef801e6ff311b2c4e04812abbed79f7826c40"
+                  },
+                  {
+                      "path":  "sound/Taunt045.wav",
+                      "size":  59362,
+                      "sha256":  "3118c88934c9253313a449309a539fb0410cb5a0485fae5e13ddd3ae799afd0a"
+                  },
+                  {
+                      "path":  "sound/Taunt046.wav",
+                      "size":  60936,
+                      "sha256":  "f53b1eef031a64797c78d414bb370298a8687bc2b98c57834182161d57374b3b"
+                  },
+                  {
+                      "path":  "sound/Taunt047.wav",
+                      "size":  37720,
+                      "sha256":  "c2772967a9c644795f7768e221dd3199284e308563870b932158e76e2dc77ed8"
+                  },
+                  {
+                      "path":  "sound/Taunt048.wav",
+                      "size":  28746,
+                      "sha256":  "e17632a316a7bad4e477db0126a6aef95443336fc01e315827141a945936884d"
+                  },
+                  {
+                      "path":  "sound/Taunt049.wav",
+                      "size":  32518,
+                      "sha256":  "8d4aee8e62b5756bbacecc23dde04eef86fb649140676556de836357f6d9e8d7"
+                  },
+                  {
+                      "path":  "sound/Taunt050.wav",
+                      "size":  61034,
+                      "sha256":  "12cad0d7ca94ce0907eae428c83f0eaa823253311e35d9be5043b2ee38db9bae"
+                  },
+                  {
+                      "path":  "sound/wind1.WAV",
+                      "size":  55818,
+                      "sha256":  "769f1059a254607c2a358343bf6740d33f17f190987c02f877aba03ce518c62c"
+                  },
+                  {
+                      "path":  "sound/wind2.wav",
+                      "size":  29688,
+                      "sha256":  "aacd9a3408f511dbc549727ff548d7e8ff28af5be6efee7f2cd91c742a974bfc"
+                  },
+                  {
+                      "path":  "sound/Won.mid",
+                      "size":  2168,
+                      "sha256":  "7b655ddbd630b16637cade42818dbbb9b381d13fc37afa2634d5274077d7292c"
+                  },
+                  {
+                      "path":  "sound/xlost.mid",
+                      "size":  6801,
+                      "sha256":  "856e1f0075f528cc127ead4a6e79646d6e61d1eee49e15d43a1c266529eca0ac"
+                  }
+              ]
+}

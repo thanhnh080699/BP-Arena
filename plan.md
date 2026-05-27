@@ -56,4 +56,3 @@ BP-Arena/
 
 ---
 **Next Step**: Initializing the project structure.
-
